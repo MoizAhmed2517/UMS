@@ -21,7 +21,7 @@ const StudentsProfile = () => {
   const [cgpa, setCGPA] = useState({});
   const [courseTotals, setCourseTotals] = useState(null);
   const [courseRem, setCourseRem] = useState(null);
-  const [courses, setCourses] = useState(null);
+  const [endrose, setEndrose] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -36,6 +36,7 @@ const StudentsProfile = () => {
       setCGPA(res.data.cgpa);
       setCourseTotals(res.data.courses_total);
       setCourseRem(res.data.courses_done);
+      setEndrose(res.data.endorsements);
     }
     fetchData();
   }, [])
@@ -61,7 +62,7 @@ const StudentsProfile = () => {
                 <TopSkillVisual />
               </Grid>
             </Stack>
-            <Endorsment />
+            <Endorsment endorsements={endrose} />
           </Stack>
         </Grid>
         <Grid item xs={4}>

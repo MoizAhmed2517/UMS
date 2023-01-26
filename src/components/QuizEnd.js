@@ -7,12 +7,16 @@ import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDiss
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import PieChartSummaryQuiz from './Graphs/PieChartSummaryQuiz';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
 
 let score = 92;
 
 const QuizEnd = () => {
 
   const navigate = useNavigate();
+  const location = useLocation()
+  const quizScore = location.state?.result
+  console.log(quizScore)
 
   const handlehomeButton = () => {
     navigate('/Quiz-Overview');
@@ -66,7 +70,7 @@ const QuizEnd = () => {
             }
 
             <Grid container sx={{ marginTop: '10px' }}>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <Box sx={{
                         marginTop: '5px',
                         width: '100%',
@@ -111,9 +115,9 @@ const QuizEnd = () => {
                     </Box>
                 </Grid>
 
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                     <PieChartSummaryQuiz />
-                </Grid>
+                </Grid> */}
             </Grid>
         </Box>
         <Button variant="contained" sx={{ backgroundColor: '#153E52',  width: '100%', marginTop: '10px', '&:hover': { backgroundColor: '#102f3e' } }} onClick={handlehomeButton}>Take New Assessment</Button>

@@ -91,9 +91,6 @@ const QuizOverview = () => {
     async function fetchData() {
       const res = await axios.get('http://18.183.141.57/management/quizes/');
       setQuizData(res.data);
-      res.data.map((quiz) => {
-        setQuizQuestion(quiz.questions);
-      })
     }
     fetchData();
   }, [])
@@ -166,7 +163,7 @@ const QuizOverview = () => {
                                 <ListItemText primary={
                                     <React.Fragment>
                                         <Stack direction="row">
-                                            <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }} component={Link} to='/Quiz-Start' state={{question: quizQuestion}} >{quiz.name}</Typography>
+                                            <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }} component={Link} to='/Quiz-Start' state={{question: quiz.questions, time: quiz.time}} >{quiz.name}</Typography>
                                             <Tooltip title={iconsVal} placement="right">
                                                 <Box sx={{ marginLeft: '5px', marginTop: '1px'}}>
                                                         {iconsVal === "Badge" ? <LocalPoliceIcon sx={{ fontSize: 16, color: '#F39223'}}/> : <LocalPoliceIcon sx={{ fontSize: 16, color: "gray"}}/>}

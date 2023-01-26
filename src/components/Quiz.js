@@ -9,10 +9,15 @@ const Quiz = () => {
 
   const location = useLocation()
   const question = location.state?.question
-  console.log(question)
+  const time = location.state?.time
   const navigate = useNavigate();
   const handleQuizStart = () => {
-    navigate('/QuizStart');
+    navigate('/QuizStart', {
+        state: {
+            quiz: question,
+            quizTime: time,
+        }
+    });
   }
 
   return (

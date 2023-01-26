@@ -27,7 +27,6 @@ const AntTabs = styled(Tabs)({
   });
 
 
-
 function a11yProps(index) {
     return {
       id: `simple-tab-${index}`,
@@ -35,9 +34,17 @@ function a11yProps(index) {
     };
 }
 
-const Endorsment = () => {
+const Endorsment = (props) => {
 
+//   const data = [];
+  const datagiven = [];
   const [value, setValue] = useState(0);
+  const [endrose, setEndrose] = useState("");
+  const [datetime, setDateTime] = useState("");
+  const [givername, setGiverName] = useState("");
+  const [giverProfile, setGiverProfile] = useState("");
+  const [recieverName, setRecieverName] = useState("");
+  const [recieverProfile, setRecieverProfile] = useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -91,6 +98,9 @@ const Endorsment = () => {
                             </List>
                         ))
                     }
+                    {
+                        data.length === 0 && <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>Not Given</Typography>
+                    }
                     
                     </Box>
                 </React.Fragment>
@@ -100,8 +110,8 @@ const Endorsment = () => {
                 <React.Fragment>
                     <Box>
                         <Button sx={{ width: '100%', marginTop: 2, backgroundColor: '#153E52', '&:hover': { backgroundColor: '#102f3e' } }} variant='contained'>Give Recommendations</Button>
-                    {/* {
-                        data.map((item, index) => (
+                    {
+                        datagiven.map((item, index) => (
                             <List key={index} sx={{ marginLeft: 3, marginRight: 2}}>
                                 <ListItem>
                                     <ListItemAvatar>
@@ -129,8 +139,10 @@ const Endorsment = () => {
                                 <Divider variant="inset" component="li" />
                             </List>
                         ))
-                    } */}
-                    <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>Not Given</Typography>
+                    }
+                    {
+                        datagiven.length === 0 && <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>Not Given</Typography>
+                    }
                     </Box>
                 </React.Fragment>
             )}
