@@ -1,5 +1,5 @@
 import { Paper, Box, Stack, Typography, IconButton } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import AddIcon from '@mui/icons-material/Add';
 import Table from '@mui/material/Table';
@@ -7,7 +7,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ModalSkill from './ModalSkill';
 import ModalSkillEdit from './ModalSkillEdit';
 
@@ -59,7 +59,7 @@ const Skills = (props) => {
                                 <Stack direction="row">
                                     <Typography>{row}</Typography>
                                     <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20 }} onClick={() => handleOpenModalEdit(row, index)}>
-                                        <CreateIcon sx={{ fontSize: 20 }} />
+                                        <DeleteIcon sx={{ fontSize: 20 }} />
                                     </IconButton>
                                 </Stack>  
                             </TableCell>

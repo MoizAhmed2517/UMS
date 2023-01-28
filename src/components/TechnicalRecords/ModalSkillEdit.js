@@ -20,7 +20,11 @@ const style = {
 
 const ModalSkillEdit = (props) => {
 
-    const handleSubmitClose = () => {
+    const handleSubmitCloseNo = () => {
+        props.setOpenState(false);
+    }
+
+    const handleSubmitCloseYes = () => {
         props.setOpenState(false);
     }
     
@@ -32,7 +36,7 @@ const ModalSkillEdit = (props) => {
         aria-describedby="modal-modal-description"
     >
         <Box sx={style} component="form">
-            <Stack direction='row' spacing={1}>
+            {/* <Stack direction='row' spacing={1}>
             <Avatar sx={{
                 bgcolor: "#fff",
                 backgroundColor: '#d9e6f2',
@@ -42,29 +46,50 @@ const ModalSkillEdit = (props) => {
                 <CreateOutlinedIcon sx={{ height: 20, width: 20, color: '#153E52'}} />
             </Avatar>
             
-            <Typography variant="h5" sx={{ color: '#153E52', textDecoration: 'underline'}}>Skill Edit</Typography>
-            </Stack>
+            <Typography variant="h5" sx={{ color: '#153E52', textDecoration: 'underline'}}>Skill Delete</Typography>
+            </Stack> */}
             
 
-            <Grid container spacing={2} marginTop={1}>
+            <Grid container spacing={2} marginTop={0.5}>
                 <Grid item xs={12}>
-                    <TextField id="outlined-basic" variant="standard" fullWidth defaultValue={props.skill} />
+                    <Typography variant='h6' sx={{ textAlign: 'center' }}>Are you sure?</Typography>
                 </Grid>
             </Grid>
 
 
-            <Button
-                variant="contained" 
-                fullWidth 
-                sx={{
-                    bgcolor: '#153E52',
-                    '&:hover': {  bgcolor: '#113242' },
-                    marginTop: '15px',
-                }} 
-                onClick={handleSubmitClose}
-            >
-                UPDATE
-            </Button>
+            <Grid container spacing={1}>
+                <Grid item xs={6}>
+                    <Button
+                        variant="contained" 
+                        fullWidth 
+                        sx={{
+                            bgcolor: '#153E52',
+                            '&:hover': {  bgcolor: '#113242' },
+                            marginTop: '15px',
+                        }} 
+                        onClick={handleSubmitCloseYes}
+                    >
+                        YES
+                    </Button>
+                     
+                </Grid>
+                <Grid item xs={6}>
+                    <Button
+                        variant="contained" 
+                        fullWidth 
+                        sx={{
+                            bgcolor: '#153E52',
+                            '&:hover': {  bgcolor: '#113242' },
+                            marginTop: '15px',
+                        }} 
+                        onClick={handleSubmitCloseNo}
+                    >
+                        NO
+                    </Button>
+                </Grid>
+            </Grid>
+
+            
 
         </Box>
     </Modal>

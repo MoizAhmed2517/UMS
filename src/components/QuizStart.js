@@ -48,12 +48,19 @@ const QuizStart = () => {
   }
 
   const handleNextQuestion = () => {
-    if (question[currentQuestion].correct === answer) {
-        setScore(score + 1);
+    if (answer !== ""){
+        if (question[currentQuestion].correct === answer) {
+            setScore(score + 1);
+        }
+        setCurrentQuestion(currentQuestion + 1);
+        setAnswer("")
+    } else {
+        alert("Please select any answer before moving forward")
     }
-    setCurrentQuestion(currentQuestion + 1);
+    
   }
 
+  console.log(answer)
   console.log(score)
 
 

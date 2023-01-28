@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { Typography, Stack, Grid, Button, Avatar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
+import axios from 'axios';
 
 const style = {
     position: 'absolute',
@@ -22,11 +23,25 @@ const style = {
 const ModalSkill = (props) => {
 
   const [skill, setSkill] = useState('');
+  const [formData, setFormData] = useState({});
+  const [id, setId] = useState(2);
 
-  const handleSubmitClose = () => {
+  const handleSubmitClose = (event) => {
     if(!skill){
       alert('Please fill the empty values');
     } else {
+      event.preventDefault();
+      const item = {
+        student_id: id,
+        skill: skill
+      }
+      axios.post('http://18.183.141.57/management/skill/', item)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
       props.setOpenState(false);
     }
   }

@@ -25,7 +25,7 @@ const StudentsProfile = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get('http://18.183.141.57/management/student-detail/1/');
+      const res = await axios.get('http://18.183.141.57/management/student-detail/2/');
       setName(res.data.name);
       setDept(res.data.department);
       setProfileDescr(res.data.profile_description);
