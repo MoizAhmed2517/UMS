@@ -4,6 +4,8 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Typography, Stack, Grid, Button, Avatar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { useUserId } from '../groups/useUserId';
+import axios from 'axios';
 
 const style = {
     position: 'absolute',
@@ -27,14 +29,31 @@ const ModalProjects = (props) => {
   const [topSkill3, setTopSkill3] = useState('');
   const [textLen, setTextLen] = useState(0);
   const [error, setError] = useState(false);
+  const { userId, setUserId } = useUserId();
 
-  const handleSubmitClose = () => {
+  const handleSubmitClose = (event) => {
     if(!title && !descr && !topSkill1 && !topSkill2 && !topSkill3){
       alert('Please fill the empty values');
     } else {
         if(error){
             alert("You have reached your limit of 200 characters.")
         } else {
+            event.preventDefault();
+            const item = {
+                student_id: userId,
+                name: title,
+                description: descr,
+                top_skill1: topSkill1,
+                top_skill2: topSkill2,
+                top_skill3: topSkill3,
+              }
+            axios.post('http://18.183.141.57/management/project/', item)
+                .then(response => {
+                    console.log(response);
+                })
+                    .catch(error => {
+                    console.log(error);
+            });
             props.setOpenState(false);
         }
     }

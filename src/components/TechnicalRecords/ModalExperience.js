@@ -38,7 +38,8 @@ const ModalExperience = (props) => {
     const [type, setType] = useState("");
     const [fromDate, setfromDate] = useState(new Date());
     const [check, setCheck] = useState(true);
-    const [toDate, setToDate] = useState("Present");
+    // const [toDate, setToDate] = useState("Present");
+    const [toDate, setToDate] = useState(null);
     const { userId, setUserId } = useUserId();
 
     function handleChange(event, setState) {
@@ -50,16 +51,17 @@ const ModalExperience = (props) => {
             alert("Please fill the empty field");
         } else {
             event.preventDefault();
+            // if (toDate === ""){
+            //     
+            // }
             const item = {
                 student_id: userId,
-                name: company,
+                company_name: company,
                 position : position,
                 start_date: fromDate,
                 end_date: toDate,
-                // type: type,
-                // location: location,
-              }
-            axios.post('http://18.183.141.57/management/skill/', item)
+            }
+            axios.post('http://18.183.141.57/management/experience/', item)
                 .then(response => {
                     console.log(response);
                 })
@@ -77,7 +79,8 @@ const ModalExperience = (props) => {
     const handleCheck = (event) => {
         setCheck(event.target.checked);
         if(check){
-            setToDate("Present");
+            // setToDate("Present");
+            setToDate(null);
         }else {
             setToDate(new Date());
         }

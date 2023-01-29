@@ -79,7 +79,7 @@ const Projects = (props) => {
                                 </Stack>
                                 <Stack direction="column">
                                     <Typography variant="caption" sx={{ color: '#000', fontStyle: 'italic' }}>{row.descr} </Typography>
-                                    <Typography variant="caption">{`Top Skill: ${row.topSkill1}`} {`- ${row.topSkill2}`} { typeof(row.topSkill3) === 'string' && `- ${row.topSkill3}`}</Typography>
+                                    <Typography variant="caption">{`Top Skill: ${row.topSkill1}`} {`- ${row.topSkill2}`} { typeof(row.topSkill3) !== '' && `- ${row.topSkill3}`}</Typography>
                                 </Stack> 
                             </TableCell>
                         </TableRow>

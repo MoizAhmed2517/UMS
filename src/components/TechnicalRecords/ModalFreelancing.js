@@ -38,7 +38,7 @@ const ModalFreelancing = (props) => {
     const [level, setLevel] = useState("");
     const [fromDate, setfromDate] = useState(new Date());
     const [check, setCheck] = useState(true);
-    const [toDate, setToDate] = useState("Present");
+    const [toDate, setToDate] = useState(null);
     const { userId, setUserId } = useUserId();
 
     function handleChange(event, setState) {
@@ -52,14 +52,14 @@ const ModalFreelancing = (props) => {
             event.preventDefault();
             const item = {
                 student_id: userId,
-                name: freelance,
+                company_name: freelance,
                 position : skill,
                 level: level,
                 rating: rating,
                 start_date: fromDate,
                 end_date: toDate,
               }
-            axios.post('http://18.183.141.57/management/skill/', item)
+            axios.post('http://18.183.141.57/management/freelance/', item)
                 .then(response => {
                     console.log(response);
                 })
@@ -77,7 +77,7 @@ const ModalFreelancing = (props) => {
     const handleCheck = (event) => {
         setCheck(event.target.checked);
         if(check){
-            setToDate("Present");
+            setToDate(null);
         }else {
             setToDate(new Date());
         }

@@ -69,7 +69,7 @@ const Freelancing = (props) => {
                                 </Stack>
                                 <Stack direction="column">
                                     <Typography variant="caption">{`Level: ${row.level}`} </Typography>
-                                    <Typography variant="caption">{`From: ${row.fromDate}`} {`To: ${row.toDate}`}</Typography>
+                                    <Typography variant="caption">{`From: ${row.fromDate}`} { !row.toDate ? 'To: Present' : `To: ${row.toDate}` }</Typography>
                                     <Typography variant="caption">{`Rating: ${row.rating}/5`}</Typography>
                                 </Stack> 
                             </TableCell>

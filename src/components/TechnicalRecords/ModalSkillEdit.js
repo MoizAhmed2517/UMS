@@ -36,20 +36,7 @@ const ModalSkillEdit = (props) => {
         aria-describedby="modal-modal-description"
     >
         <Box sx={style} component="form">
-            {/* <Stack direction='row' spacing={1}>
-            <Avatar sx={{
-                bgcolor: "#fff",
-                backgroundColor: '#d9e6f2',
-                height: '30px',
-                width: '30px',
-            }}>
-                <CreateOutlinedIcon sx={{ height: 20, width: 20, color: '#153E52'}} />
-            </Avatar>
             
-            <Typography variant="h5" sx={{ color: '#153E52', textDecoration: 'underline'}}>Skill Delete</Typography>
-            </Stack> */}
-            
-
             <Grid container spacing={2} marginTop={0.5}>
                 <Grid item xs={12}>
                     <Typography variant='h6' sx={{ textAlign: 'center' }}>Are you sure?</Typography>
