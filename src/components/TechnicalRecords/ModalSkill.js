@@ -6,6 +6,7 @@ import { Typography, Stack, Grid, Button, Avatar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import axios from 'axios';
+import { useUserId } from '../groups/useUserId';
 
 const style = {
     position: 'absolute',
@@ -23,8 +24,7 @@ const style = {
 const ModalSkill = (props) => {
 
   const [skill, setSkill] = useState('');
-  const [formData, setFormData] = useState({});
-  const [id, setId] = useState(2);
+  const { userId, setUserId } = useUserId();
 
   const handleSubmitClose = (event) => {
     if(!skill){
@@ -32,13 +32,10 @@ const ModalSkill = (props) => {
     } else {
       event.preventDefault();
       const item = {
-        student_id: id,
+        student_id: userId,
         skill: skill
       }
       axios.post('http://18.183.141.57/management/skill/', item)
-        .then(response => {
-          console.log(response);
-        })
         .catch(error => {
           console.log(error);
         });

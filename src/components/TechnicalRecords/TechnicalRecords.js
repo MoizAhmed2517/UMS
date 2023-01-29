@@ -8,9 +8,10 @@ import Freelancing from './Freelancing';
 import Projects from './Projects';
 import Certificates from './Certificates';
 import axios from 'axios';
+import { useUserId } from '../groups/useUserId';
 
 const TechnicalRecords = () => {
-
+  const { userId, setUserId } = useUserId();
   const [skills, setSkill] = useState(null);
   const [experience, setExperience] = useState(null);
   const [project, setProject] = useState(null);
@@ -20,7 +21,7 @@ const TechnicalRecords = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get('http://18.183.141.57/management/student-detail/1/');
+      const res = await axios.get(`http://18.183.141.57/management/student-detail/${userId}/`);
       setSkill(res.data.skills);
       setExperience(res.data.experience);
       setLink(res.data.portfolio);

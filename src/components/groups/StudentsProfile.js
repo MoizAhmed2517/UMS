@@ -8,9 +8,10 @@ import PieChartstatus from '../Graphs/PieChartstatus';
 import TopSkillVisual from '../Graphs/TopSkillVisual';
 import Endorsment from '../Endorsment';
 import axios from 'axios';
+import { useUserId } from '../groups/useUserId';
 
 const StudentsProfile = () => {
-
+  const { userId, setUserId } = useUserId();
   const [name, setName] = useState("");
   const [dept, setDept] = useState("");
   const [profileDescr, setProfileDescr] = useState("");
@@ -25,7 +26,7 @@ const StudentsProfile = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get('http://18.183.141.57/management/student-detail/2/');
+      const res = await axios.get(`http://18.183.141.57/management/student-detail/${userId}/`);
       setName(res.data.name);
       setDept(res.data.department);
       setProfileDescr(res.data.profile_description);

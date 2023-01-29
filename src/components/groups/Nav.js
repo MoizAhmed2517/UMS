@@ -51,6 +51,8 @@ const PAGES = [
 
 function Nav() {
 
+  const id = 2;
+
   const [tabColor, setTabColor] = useState(Number(localStorage.getItem('myValue')) || 0);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -102,7 +104,7 @@ function Nav() {
               }}>
                 {
                   PAGES.map((page, index) => (
-                    <Tab key={index} label={page.label} to={page.path} component={NavLink} />
+                    <Tab key={index} label={page.label} to={page.path} component={NavLink} state={{ user_id: id }} />
                   ))
                 }
               </Tabs>

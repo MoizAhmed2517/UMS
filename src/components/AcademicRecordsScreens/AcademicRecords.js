@@ -8,16 +8,18 @@ import CurrentAssesments from './CurrentAssesments';
 import QuizTable from './QuizTable';
 import axios from 'axios';
 import Quiz from '@mui/icons-material/Quiz';
+import { useUserId } from '../groups/useUserId';
 
 const AcademicRecords = () => {
-
+  const { userId, setUserId } = useUserId();
   const [courses, setCourses] = useState(null);
   const [gpa, setGPA] = useState({});
   const [quiz, setQuiz] = useState(null)
+  console.log(userId)
 
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get('http://18.183.141.57/management/student-detail/1/');
+      const res = await axios.get(`http://18.183.141.57/management/student-detail/${userId}/`);
       setGPA(res.data.gpa);
       res.data.courses.map((item) => {
         setCourses(item)

@@ -14,6 +14,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Checkbox from '@mui/material/Checkbox';
+import { useUserId } from '../groups/useUserId';
+import axios from 'axios';
 
 const style = {
     position: 'absolute',
@@ -37,15 +39,33 @@ const ModalExperience = (props) => {
     const [fromDate, setfromDate] = useState(new Date());
     const [check, setCheck] = useState(true);
     const [toDate, setToDate] = useState("Present");
+    const { userId, setUserId } = useUserId();
 
     function handleChange(event, setState) {
         setState(event.target.value);
     }
     
-    const handleSubmitClose = () => {
+    const handleSubmitClose = (event) => {
         if (!location || !position || !company || !type) {
             alert("Please fill the empty field");
         } else {
+            event.preventDefault();
+            const item = {
+                student_id: userId,
+                name: company,
+                position : position,
+                start_date: fromDate,
+                end_date: toDate,
+                // type: type,
+                // location: location,
+              }
+            axios.post('http://18.183.141.57/management/skill/', item)
+                .then(response => {
+                    console.log(response);
+                })
+                    .catch(error => {
+                    console.log(error);
+            });
             props.setOpenState(false);
         }  
     }
