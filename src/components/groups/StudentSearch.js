@@ -52,8 +52,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function createData(name, department, sem, descr, typeAPI) {
-  return {name, department, sem, descr, typeAPI};
+function createData(id, name, department, sem, descr, typeAPI) {
+  return {id, name, department, sem, descr, typeAPI};
 }
 
 function limitString(string='', limiter=0){
@@ -78,6 +78,7 @@ const searchFields = [
 const StudentSearch = () => {
 
   const [dataDisplay, setDataDisplay] = useState([]);
+  const [userSearchId, setUserSearchId] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
@@ -87,6 +88,7 @@ const StudentSearch = () => {
       let department = [];
       let descr = [];
       let datamap = [];
+      let searchId = [];
       let typeAPI = "student";
       res.data.map((data) => {
         let fullName = data.first_name + ' ' +  data.last_name;
@@ -94,10 +96,11 @@ const StudentSearch = () => {
         sem.push(data.semester);
         descr.push(data.profile_description);
         department.push(data.department);
+        searchId.push(data.id);
       });
 
       for (let i=0; i<descr.length; i++) {
-        datamap.push(createData(fullNameList[i], department[i], sem[i], descr[i], typeAPI));
+        datamap.push(createData(searchId[i], fullNameList[i], department[i], sem[i], descr[i], typeAPI));
       }
 
       setDataDisplay(datamap);
@@ -192,16 +195,16 @@ const StudentSearch = () => {
         <Grid container spacing={2} marginTop={1}>
             { 
               search.length === 0 ? 
-                (currentPosts.map((item, index) => (
-                  <Grid item xs={4} key={index}>
-                    <GridView TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
+                (currentPosts.map((item) => (
+                  <Grid item xs={4} key={item.id}>
+                    <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
                   </Grid>
                 ))
                 ) : search.length !== 0 ?
                 (
-                  search.map((item, index) => (
-                    <Grid item xs={4} key={index}>
-                      <GridView TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
+                  search.map((item) => (
+                    <Grid item xs={4} key={item.id}>
+                      <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
                     </Grid>
                   ))
                 ) : null   

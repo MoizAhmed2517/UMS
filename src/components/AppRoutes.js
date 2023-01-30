@@ -15,6 +15,7 @@ import Quiz from './Quiz';
 import QuizStart from './QuizStart';
 import QuizEnd from './QuizEnd';
 import Login from './groups/Login';
+import StudentSearchProfile from './groups/StudentSearchProfile';
 
 const AppRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const AppRoutes = () => {
         <Route path='/Quiz-Start' element={<><Nav /><Quiz /></>}/>
         <Route path='/QuizStart' element={<><Nav /><QuizStart /></>}/>
         <Route path='/QuizEnd' element={<><Nav /><QuizEnd /></>}/>
+        <Route path='/StudentSearchProfile' element={<><Nav /><StudentSearchProfile /></>}/>
       </Routes>
   )
 }

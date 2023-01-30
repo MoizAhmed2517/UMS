@@ -1,8 +1,24 @@
 import {Box, Card, CardContent, Typography, Grid, Avatar, Stack} from '@mui/material';
 import React from 'react';
-
+import { Link } from "react-router-dom";
+import Chip from '@mui/material/Chip';
+import { useUserId } from './groups/useUserId';
+import { useNavigate } from 'react-router-dom';
 
 const GridView = (props) => {
+
+  const { searchUserId, setSearchUserId } = useUserId();
+  const navigate = useNavigate();
+
+  const handleChip = () => {
+    if (props.TypeAPI === "student"){
+        navigate('/StudentSearchProfile', {
+            state: {
+                userId: props.studentId
+            }
+        })
+    }
+  };
 
   return (
     <Box sx={{
@@ -31,8 +47,8 @@ const GridView = (props) => {
                                 )
                             }
                         </Stack>
-                        <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px'}}>{props.TeacherInfo}</Typography>
-                        <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px', fontStyle: 'italic', textalign: 'justify'}} display='inline'>.....more</Typography>
+                        <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px'}}>{props.TeacherInfo}</Typography> 
+                        <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
                     </Grid>
                 </Grid>
             </CardContent>
