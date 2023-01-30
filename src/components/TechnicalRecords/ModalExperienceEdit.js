@@ -36,6 +36,14 @@ const ModalExperienceEdit = (props) => {
         props.setOpenState(false);
     }
 
+    const handleSubmitCloseNo = () => {
+        props.setOpenState(false);
+    }
+
+    const handleSubmitCloseYes = () => {
+        props.setOpenState(false);
+    }
+
     const handleEndDate = (event) => {
         if (isValidDate(event.target.value)){
             setEndDate(event.target.value);

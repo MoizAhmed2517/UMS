@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ComputerIcon from '@mui/icons-material/Computer';
 import ModalProjects from  './ModalProjects';
 import ModalProjectEdit from './ModalProjectEdit';
+import ModalSkillEdit from './ModalSkillEdit';
 
 function createData(title, link, descr, topSkill1, topSkill2, topSkill3 ) {
     return { title, link, descr, topSkill1, topSkill2, topSkill3 };
@@ -87,7 +88,8 @@ const Projects = (props) => {
                 </TableBody>
             </Table>
         </TableContainer>
-        <ModalProjectEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} textLength={text} index={selectedIndex} />
+        {/* <ModalProjectEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} textLength={text} index={selectedIndex} /> */}
+        <ModalSkillEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} textLength={text} index={selectedIndex} />
     </Paper>
   )
 }

@@ -64,7 +64,7 @@ const Skills = (props) => {
                                     <Typography>{row}</Typography>
                                     {
                                         props.displayStatus !== 'search' && (
-                                            <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20, marginRight: '17px' }} onClick={() => handleOpenModalEdit(row, index)}>
+                                            <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20 }} onClick={() => handleOpenModalEdit(row, index)}>
                                                 <DeleteIcon sx={{ fontSize: 20 }} />
                                             </IconButton>
                                         )

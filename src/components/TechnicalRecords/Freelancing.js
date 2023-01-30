@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import ModalFreelancing from './ModalFreelancing';
 import ModalFreelancingEdit from './ModalFreelancingEdit';
+import ModalSkillEdit from './ModalSkillEdit';
 
 function createData(position, company, level, fromDate, toDate, rating) {
     return { position, company, level, fromDate, toDate, rating};
@@ -86,7 +87,8 @@ const Freelancing = (props) => {
                 </TableBody>
             </Table>
         </TableContainer>
-        <ModalFreelancingEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} index={selectedIndex} />
+        {/* <ModalFreelancingEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} index={selectedIndex} /> */}
+        <ModalSkillEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} index={selectedIndex} />
     </Paper>
   )
 }

@@ -10,6 +10,7 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalExperience from './ModalExperience';
 import ModalExperienceEdit from './ModalExperienceEdit';
+import ModalSkillEdit from './ModalSkillEdit';
 
 function createData(position, company, type, fromDate, toDate, location) {
     return { position, company, type, fromDate, toDate, location };
@@ -71,7 +72,7 @@ const Experience = (props) => {
                                     <Typography>{row.position} {`- ${row.company}`}</Typography>
                                     {
                                         props.displayStatus !== 'search' && (
-                                            <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20, marginRight: '17px' }} onClick={() => {handleOpenModalEdit(row, index)}}>
+                                            <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20 }} onClick={() => {handleOpenModalEdit(row, index)}}>
                                                 <DeleteIcon sx={{ fontSize: 20 }} />
                                             </IconButton>
                                         )
@@ -88,7 +89,8 @@ const Experience = (props) => {
                 </TableBody>
             </Table>
         </TableContainer>
-        <ModalExperienceEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} index={selectedIndex} />
+        {/* <ModalExperienceEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} index={selectedIndex} /> */}
+        <ModalSkillEdit openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} index={selectedIndex} />
     </Paper>
   )
 }
