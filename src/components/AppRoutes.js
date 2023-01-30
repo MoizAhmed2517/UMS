@@ -16,6 +16,8 @@ import QuizStart from './QuizStart';
 import QuizEnd from './QuizEnd';
 import Login from './groups/Login';
 import StudentSearchProfile from './groups/StudentSearchProfile';
+import AcademicRecordSearch from './AcademicRecordsScreens/AcademicRecordSearch';
+import TechnicalRecordSearch from './TechnicalRecords/TechnicalRecordSearch';
 
 const AppRoutes = () => {
   return (
@@ -36,6 +38,8 @@ const AppRoutes = () => {
         <Route path='/QuizStart' element={<><Nav /><QuizStart /></>}/>
         <Route path='/QuizEnd' element={<><Nav /><QuizEnd /></>}/>
         <Route path='/StudentSearchProfile' element={<><Nav /><StudentSearchProfile /></>}/>
+        <Route path='/Academic-Records-Search' element={<><Nav /><AcademicRecordSearch/></>}/>
+        <Route path='/Technical-Records-Search' element={<><Nav /><TechnicalRecordSearch/></>}/>
       </Routes>
   )
 }

@@ -42,9 +42,13 @@ const Skills = (props) => {
             <Stack direction="row" sx={{ marginLeft: 1.5, paddingTop: 1 }}>
                 <TerminalIcon sx={{ fontSize: 23, color: '#fff' }}/>
                 <Typography variant='title' sx={{ fontWeight: 'bold', color: '#fff', marginLeft: '5px' }}>Skills</Typography>
-                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
-                    <AddIcon />
-                </IconButton>
+                {
+                    props.displayStatus !== 'search' && (
+                        <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
+                            <AddIcon />
+                        </IconButton>
+                    )
+                }  
             </Stack>
         </Box>
 
@@ -58,9 +62,13 @@ const Skills = (props) => {
                             <TableCell align="left">
                                 <Stack direction="row">
                                     <Typography>{row}</Typography>
-                                    <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20, marginRight: '17px' }} onClick={() => handleOpenModalEdit(row, index)}>
-                                        <DeleteIcon sx={{ fontSize: 20 }} />
-                                    </IconButton>
+                                    {
+                                        props.displayStatus !== 'search' && (
+                                            <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20, marginRight: '17px' }} onClick={() => handleOpenModalEdit(row, index)}>
+                                                <DeleteIcon sx={{ fontSize: 20 }} />
+                                            </IconButton>
+                                        )
+                                    }                            
                                 </Stack>  
                             </TableCell>
                         </TableRow>  

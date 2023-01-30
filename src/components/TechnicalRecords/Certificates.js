@@ -56,11 +56,13 @@ const Certificates = (props) => {
             <Stack direction="row" sx={{ marginLeft: 1.5, paddingTop: 1 }}>
                 <NoteIcon sx={{ fontSize: 23, color: '#fff' }}/>
                 <Typography variant='title' sx={{ fontWeight: 'bold', color: '#fff', marginLeft: '5px' }}>Certificate</Typography>
-                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
-                    <Icon>
-                        <AddIcon />
-                    </Icon>
-                </IconButton>
+                {
+                    props.displayStatus !== 'search' && (
+                        <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
+                            <AddIcon />
+                        </IconButton>
+                    )
+                }
                 {/* <IconButton sx={{ color: '#fff', marginTop: '-9px', marginRight: '23px' }}>
                     <DeleteOutlineIcon />
                 </IconButton> */}
@@ -83,9 +85,9 @@ const Certificates = (props) => {
                                         <IconButton sx={{ marginLeft: 'auto', height: 20, width: 20, marginTop: '15px' }} onClick={() => handleCertificateVerify(row.platform, row.certificateID, row.verifyStatus)}>
                                             { row.verifyStatus === 'Yes' ? 
                                             (
-                                                <VerifiedIcon sx={{ fontSize: 25, color: '#006400' }} /> 
+                                                <VerifiedIcon sx={{ fontSize: 25, color: '#006400', marginRight: '35px' }} /> 
                                             ) : (
-                                                <VerifiedIcon sx={{ fontSize: 25 }} />  
+                                                <VerifiedIcon sx={{ fontSize: 25, marginRight: '35px' }} />  
                                             )}  
                                         </IconButton>
                                     </Tooltip>

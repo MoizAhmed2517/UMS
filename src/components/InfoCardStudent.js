@@ -5,8 +5,6 @@ import Image from '../static/images/banner/1.png';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import { styled } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
-import TeacherModel from './TeacherModel';
-import TechnicalRecords from './TechnicalRecords/TechnicalRecords';
 import { Link } from 'react-router-dom';
 import ModalStudent from './ModalStudent';
 
@@ -80,9 +78,13 @@ const InfoCardStudent = (props) => {
               '&:hover': { backgroundColor: '#d9e6f2' },
               marginLeft: 'auto',
             }}>
-              <Button variant="text" onClick={() => handleOpenModalEdit(rows)}>
-                <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52' }} />
-              </Button>
+              {
+                props.displayStatus !== 'search' && (
+                  <Button variant="text" onClick={() => handleOpenModalEdit(rows)}>
+                    <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52' }} />
+                  </Button>
+                )
+              }
               <ModalStudent openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} />
             </Avatar>
             

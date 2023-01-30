@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import EngineeringIcon from '@mui/icons-material/Engineering';
-import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ModalExperience from './ModalExperience';
 import ModalExperienceEdit from './ModalExperienceEdit';
 
@@ -49,9 +49,13 @@ const Experience = (props) => {
             <Stack direction="row" sx={{ marginLeft: 1.5, paddingTop: 1 }}>
                 <EngineeringIcon sx={{ fontSize: 23, color: '#fff' }}/>
                 <Typography variant='title' sx={{ fontWeight: 'bold', color: '#fff', marginLeft: '5px' }}>Expereince</Typography>
-                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
-                    <AddIcon />
-                </IconButton>
+                {
+                    props.displayStatus !== 'search' && (
+                        <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
+                            <AddIcon />
+                        </IconButton>
+                    )
+                }  
             </Stack>
         </Box>
 
@@ -64,10 +68,14 @@ const Experience = (props) => {
                         <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell align="left">
                                 <Stack direction="row">
-                                    <Typography>{row.position} {`- ${row.company}`}</Typography> 
-                                    <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20 }} onClick={() => {handleOpenModalEdit(row, index)}}>
-                                        <CreateIcon sx={{ fontSize: 20 }} />
-                                    </IconButton>
+                                    <Typography>{row.position} {`- ${row.company}`}</Typography>
+                                    {
+                                        props.displayStatus !== 'search' && (
+                                            <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20, marginRight: '17px' }} onClick={() => {handleOpenModalEdit(row, index)}}>
+                                                <DeleteIcon sx={{ fontSize: 20 }} />
+                                            </IconButton>
+                                        )
+                                    }
                                 </Stack>
                                 <Stack direction="column">
                                     <Typography variant="caption">{row.type}</Typography>

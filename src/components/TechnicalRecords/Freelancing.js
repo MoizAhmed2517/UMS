@@ -6,7 +6,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import ModalFreelancing from './ModalFreelancing';
 import ModalFreelancingEdit from './ModalFreelancingEdit';
@@ -47,9 +47,13 @@ const Freelancing = (props) => {
             <Stack direction="row" sx={{ marginLeft: 1.5, paddingTop: 1 }}>
                 <HomeWorkIcon sx={{ fontSize: 23, color: '#fff' }}/>
                 <Typography variant='title' sx={{ fontWeight: 'bold', color: '#fff', marginLeft: '5px' }}>Freelancing</Typography>
-                <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
-                    <AddIcon />
-                </IconButton>
+                {
+                    props.displayStatus !== 'search' && (
+                        <IconButton sx={{ color: '#fff', marginLeft: 'auto', marginTop: '-9px', marginRight: '23px' }} onClick={handleOpenModal}>
+                            <AddIcon />
+                        </IconButton>
+                    )
+                } 
             </Stack>
         </Box>
 
@@ -63,9 +67,13 @@ const Freelancing = (props) => {
                             <TableCell align="left">
                                 <Stack direction="row">
                                     <Typography>{row.position} {`- ${row.company}`}</Typography> 
-                                    <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20 }} onClick={() => {handleOpenModalEdit(row, index)}}>
-                                        <CreateIcon sx={{ fontSize: 20 }} />
-                                    </IconButton>
+                                    {
+                                        props.displayStatus !== 'search' && (
+                                            <IconButton sx={{ color: '#153E52', marginLeft: 'auto', height: 20, width: 20, marginRight: '17px' }} onClick={() => {handleOpenModalEdit(row, index)}}>
+                                                <DeleteIcon sx={{ fontSize: 20 }} />
+                                            </IconButton>
+                                        )
+                                    }
                                 </Stack>
                                 <Stack direction="column">
                                     <Typography variant="caption">{`Level: ${row.level}`} </Typography>

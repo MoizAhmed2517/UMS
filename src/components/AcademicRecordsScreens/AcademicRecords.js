@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Container, Grid, Stack } from "@mui/material";
-import Notification from '../Notification';
 import Header from './Header';
 import CurrentSemesterCourses from './CurrentSemesterCourses';
 import BarChartGPA from '../Graphs/BarChartGPA';
 import CurrentAssesments from './CurrentAssesments';
 import QuizTable from './QuizTable';
 import axios from 'axios';
-import Quiz from '@mui/icons-material/Quiz';
 import { useUserId } from '../groups/useUserId';
 
 const AcademicRecords = () => {
@@ -15,7 +13,6 @@ const AcademicRecords = () => {
   const [courses, setCourses] = useState(null);
   const [gpa, setGPA] = useState({});
   const [quiz, setQuiz] = useState(null)
-  console.log(userId)
 
   useEffect(() => {
     async function fetchData() {
