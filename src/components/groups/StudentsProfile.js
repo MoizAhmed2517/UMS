@@ -8,10 +8,11 @@ import PieChartstatus from '../Graphs/PieChartstatus';
 import TopSkillVisual from '../Graphs/TopSkillVisual';
 import Endorsment from '../Endorsment';
 import axios from 'axios';
-import { useUserId } from '../groups/useUserId';
+import { useLocation } from 'react-router';
 
 const StudentsProfile = () => {
-  const { userId, setUserId } = useUserId();
+  const locationexist = useLocation();
+  const id = locationexist.state?.userId
   const [name, setName] = useState("");
   const [dept, setDept] = useState("");
   const [profileDescr, setProfileDescr] = useState("");
@@ -23,10 +24,12 @@ const StudentsProfile = () => {
   const [courseTotals, setCourseTotals] = useState(null);
   const [courseRem, setCourseRem] = useState(null);
   const [endrose, setEndrose] = useState(null);
+  const [userLoginId, setUserLoginId] = useState(id);
 
+  console.log(userLoginId);
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get(`http://18.183.141.57/management/student-detail/${userId}/`);
+      const res = await axios.get(`http://18.183.141.57/management/student-detail/${userLoginId}/`);
       setName(res.data.name);
       setDept(res.data.department);
       setProfileDescr(res.data.profile_description);
@@ -67,7 +70,7 @@ const StudentsProfile = () => {
           </Stack>
         </Grid>
         <Grid item xs={4}>
-          <Application />
+          <Application userId={userLoginId} />
           <Notification />
         </Grid>
       </Grid>

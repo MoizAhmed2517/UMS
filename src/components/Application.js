@@ -47,7 +47,7 @@ const LightTooltip = styled(({ className, ...props }) => (
     },
   }));
 
-const Application = () => {
+const Application = (props) => {
   return (
     <Paper sx={{ padding: '5px', borderRadius: '10px', marginBottom: '10px'}}>
         <TableContainer>
@@ -70,7 +70,7 @@ const Application = () => {
                     <Grid item xs={6} marginTop={1} key={index} marginBottom={1}>
                         <Stack direction='column'>
                             <LightTooltip title={tooltip}>
-                                <IconButton size='large' color='primary' style={{ color: '#153E52', height: 50, width: 50, marginLeft: 54 }} component={Link} to={path}> 
+                                <IconButton size='large' color='primary' style={{ color: '#153E52', height: 50, width: 50, marginLeft: 54 }} component={Link} to={path} state={{ userId: props.userId }}> 
                                     <Icon style={{filter: 'drop-shadow(1px 0px 5px rgba(0, 0, 0, 0.5))'}}>{icon}</Icon>
                                 </IconButton>
                             </LightTooltip>

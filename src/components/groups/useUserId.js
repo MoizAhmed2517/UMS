@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useUserId = (initialValue = 1) => {
+export const useUserId = (initialValue = 0) => {
   const [userId, setUserId] = useState(initialValue);
 
   return {

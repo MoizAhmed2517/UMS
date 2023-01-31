@@ -24,14 +24,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import StudentsProfile from './StudentsProfile';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-
+import { useUserId } from '../groups/useUserId';
 
 function createData(id, userType, email, password) {
   return {id, userType, email, password};
 }
 
 const dummyUsers = [
-  createData( 1, 'student', 'waleed.hussain@gmail.com', '123455'),
+  createData( 1, 'student', 'huzaifa.ahmed@gmail.com', '123455'),
   createData( 2, 'teacher','harris.ali@gmail.com', 'abcde'),
   createData( 3, 'recruiter','Sadia.jamal@hotmail.com', 'qwerty'),
 ];
@@ -51,7 +51,7 @@ const theme = createTheme();
 const Login = (props) => {
 
   const navigate = useNavigate();
-
+  const { userId, setUserId } = useUserId();
   const [credentials, setCredentials] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState('student');
@@ -107,7 +107,7 @@ const Login = (props) => {
       if (credentials.email.includes('@')){
         dummyUsers.map((item) => {
           if(item.email === credentials.email && item.password === credentials.password && user === item.userType){
-            console.log("Success Login")
+            setUserId(item.id)
             setAccess(true)
           }
         })
@@ -126,9 +126,12 @@ const Login = (props) => {
   // }
 
   useEffect(() => {
-    console.log(user);
     if (user === 'student' && access === true) {
-      navigate('/student-profile');
+      navigate('/student-profile', {
+        state: {
+          userId: userId
+        }
+      });
     } else if (user === 'teacher' && access === true) {
       navigate('/Teacher');
     } else if (user === 'recruiter' && access === true){

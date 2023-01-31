@@ -6,17 +6,18 @@ import BarChartGPA from '../Graphs/BarChartGPA';
 import CurrentAssesments from './CurrentAssesments';
 import QuizTable from './QuizTable';
 import axios from 'axios';
-import { useUserId } from '../groups/useUserId';
+import { useLocation } from 'react-router';
 
 const AcademicRecords = () => {
-  const { userId, setUserId } = useUserId();
+  const locationexist = useLocation();
+  const id = locationexist.state?.userId
   const [courses, setCourses] = useState(null);
   const [gpa, setGPA] = useState({});
   const [quiz, setQuiz] = useState(null)
 
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get(`http://18.183.141.57/management/student-detail/${userId}/`);
+      const res = await axios.get(`http://18.183.141.57/management/student-detail/${id}/`);
       setGPA(res.data.gpa);
       res.data.courses.map((item) => {
         setCourses(item)
