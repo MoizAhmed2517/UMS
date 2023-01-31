@@ -31,12 +31,11 @@ const experience = [
 
 const InfoCardStudent = (props) => {
   const rows = [
-    createData(props.studentName, props.studentProfile.slice(0,126), props.studentTalks, props.studentPNum, props.studentLocation, props.studentDept, props.studentSemester),
+    createData(props.studentName, props.studentProfile.slice(0,110), props.studentTalks, props.studentPNum, props.studentLocation, props.studentDept, props.studentSemester),
   ];
 
   const [openEdit, setOpenEdit] = useState(false);
   const [selectRow, setSelectedRow] = useState(rows);
-  // const [text, setText] = useState(0);
   const handleOpenModalEdit = (row) => {
     setOpenEdit(true);
     setSelectedRow(row);

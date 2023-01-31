@@ -9,15 +9,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import profilePic from '../static/images/avatar/image.jpg';
+import EndrosementModal from './EndrosementModal';
 
 function createData(name, title, date, endrose) {
     return { name, title, date, endrose };
   }
-  
-const data = [
-    createData('Ashfaq Hussain', 'Software Engineer | Assitant Proffessor | Sir Syed Uni', '20/8/2022 15:44:00 UTC', 'Harris Ali has strong academic qualifications. He received his PhD from University of Bremen, Germany and MSc from University of Bremen, Germany. He has good research profile and he published in good venues, both in journals and conferences. He is currently working in UET Peshawar, which is one of the leading Engineering University in Pakistan'),
-    createData('Jawad Shaikh', ' Assitant Proffessor | Georgia Tech', '21/8/2022 15:44:00 UTC', 'Harris Ali has strong academic qualifications. He received his PhD from University of Bremen, Germany and MSc from University of Bremen, Germany. He has good research profile and he published in good venues, both in journals and conferences. He is currently working in UET Peshawar, which is one of the leading Engineering University in Pakistan'),
-];
 
 const AntTabs = styled(Tabs)({
     borderBottom: '1px solid #e8e8e8',
@@ -35,16 +31,22 @@ function a11yProps(index) {
 }
 
 const Endorsment = (props) => {
-
-//   const data = [];
+  const dataR = [];
   const datagiven = [];
   const [value, setValue] = useState(0);
-  const [endrose, setEndrose] = useState("");
-  const [datetime, setDateTime] = useState("");
-  const [givername, setGiverName] = useState("");
-  const [giverProfile, setGiverProfile] = useState("");
-  const [recieverName, setRecieverName] = useState("");
-  const [recieverProfile, setRecieverProfile] = useState("");
+  const [open, setOpen] = useState(false);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
+
+  props.endorsG && props.endorsG.map((data) => {
+    datagiven.push(createData(data.receiver_name, data.receiver_profile.slice(0, 110), data.datetime, data.endoresement));
+  })
+
+  props.endorsR && props.endorsR.map((data) => {
+    dataR.push(createData(data.giver_name, data.giver_profile.slice(0, 110), data.datetime, data.endoresement));
+  })
+
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -73,9 +75,26 @@ const Endorsment = (props) => {
 
             { value === 0 && (
                 <React.Fragment>
-                    <Box sx={{ marginLeft: -4 }}>
+                    <Box>
+                        {
+                            props.displayStatus === "search" && (
+                                <Button sx={{ 
+                                    width: '100%', 
+                                    marginTop: 2, 
+                                    backgroundColor: '#153E52', 
+                                    '&:hover': { backgroundColor: '#102f3e' } 
+                                }} 
+                                variant='contained'
+                                onClick={handleOpenModal}
+                                >
+                                    Give Recommendations
+                                </Button>
+                            )
+                        }
+                        <EndrosementModal openModal={open} handleClose={handleCloseModal} setOpenState={setOpen} userSearchID={props.userIDSearch}/>
+
                     {
-                        data.map((item, index) => (
+                        dataR.map((item, index) => (
                             <List key={index} sx={{ marginLeft: 3, marginRight: 2}}>
                                 <ListItem>
                                     <ListItemAvatar>
@@ -99,7 +118,7 @@ const Endorsment = (props) => {
                         ))
                     }
                     {
-                        data.length === 0 && <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>Not Given</Typography>
+                        dataR.length === 0 && <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>Not Given</Typography>
                     }
                     
                     </Box>
@@ -109,40 +128,39 @@ const Endorsment = (props) => {
         { value === 1 && (
                 <React.Fragment>
                     <Box>
-                        <Button sx={{ width: '100%', marginTop: 2, backgroundColor: '#153E52', '&:hover': { backgroundColor: '#102f3e' } }} variant='contained'>Give Recommendations</Button>
-                    {
-                        datagiven.map((item, index) => (
-                            <List key={index} sx={{ marginLeft: 3, marginRight: 2}}>
-                                <ListItem>
-                                    <ListItemAvatar>
-                                        <Avatar alt="React" src={profilePic} />
-                                    </ListItemAvatar>
-                                    <ListItemText primary={
-                                        <React.Fragment>
-                                            <Stack direction="row">
-                                                <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }}>{item.name}</Typography>
-                                            </Stack>
-                                        </React.Fragment>
-                                    } 
-                                    secondary={
-                                        <React.Fragment>
-                                            <Stack direction="column">
-                                                <Typography variant="subtitle2" sx={{ color: '#000' }}>{item.title}</Typography>
-                                                <Typography variant="caption">{item.date}</Typography>
-                                                <Typography variant="caption">{item.endrose}</Typography>
-                                            </Stack>
-                                                
-                                        </React.Fragment>
-                                    } 
-                                    />
-                                </ListItem>
-                                <Divider variant="inset" component="li" />
-                            </List>
-                        ))
-                    }
-                    {
-                        datagiven.length === 0 && <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>Not Given</Typography>
-                    }
+                        {
+                            datagiven.map((item, index) => (
+                                <List key={index} sx={{ marginLeft: 3, marginRight: 2}}>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar alt="React" src={profilePic} />
+                                        </ListItemAvatar>
+                                        <ListItemText primary={
+                                            <React.Fragment>
+                                                <Stack direction="row">
+                                                    <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }}>{item.name}</Typography>
+                                                </Stack>
+                                            </React.Fragment>
+                                        } 
+                                        secondary={
+                                            <React.Fragment>
+                                                <Stack direction="column">
+                                                    <Typography variant="subtitle2" sx={{ color: '#000' }}>{item.title}</Typography>
+                                                    <Typography variant="caption">{item.date}</Typography>
+                                                    <Typography variant="caption">{item.endrose}</Typography>
+                                                </Stack>
+                                                    
+                                            </React.Fragment>
+                                        } 
+                                        />
+                                    </ListItem>
+                                    <Divider variant="inset" component="li" />
+                                </List>
+                            ))
+                        }
+                        {
+                            datagiven.length === 0 && <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>Not Given</Typography>
+                        }
                     </Box>
                 </React.Fragment>
             )}

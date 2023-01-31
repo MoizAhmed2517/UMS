@@ -32,6 +32,7 @@ function createData(id, userType, email, password) {
 
 const dummyUsers = [
   createData( 1, 'student', 'huzaifa.ahmed@gmail.com', '123455'),
+  createData( 2, 'student', 'syed.samia@gmail.com', '123456'),
   createData( 2, 'teacher','harris.ali@gmail.com', 'abcde'),
   createData( 3, 'recruiter','Sadia.jamal@hotmail.com', 'qwerty'),
 ];

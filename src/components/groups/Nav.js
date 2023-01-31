@@ -53,15 +53,19 @@ function Nav() {
 
   const id = 2;
 
-  const [tabColor, setTabColor] = useState(Number(localStorage.getItem('myValue')) || 0);
+  const [tabColor, setTabColor] = useState(Number(localStorage.getItem('myValue')) || 3);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpenUserMenu = (event) => {
     setAnchorEl(event.currentTarget);
+    setTabColor(3);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (e, label) => {
     setAnchorEl(null);
+    if (label === "Logout") {
+      localStorage.clear();
+    }
   };
 
   const tabColorHandler = (e,value) => {
@@ -133,7 +137,7 @@ function Nav() {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting, index) => (
-                    <MenuItem key={index} onClick={handleCloseUserMenu}>
+                    <MenuItem key={index} onClick={(e) => {handleCloseUserMenu(e, setting.label)}}>
                       <Typography textAlign="center" to={setting.path} component={Link} sx={{ textDecoration: 'none', color: '#153E52' }}>{setting.label}</Typography>
                     </MenuItem>
                   ))}

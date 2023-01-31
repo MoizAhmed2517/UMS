@@ -111,7 +111,7 @@ const StudentSearch = () => {
   const [search, setSearch] = useState(dataDisplay);
   const [changeField, setChangeField] = useState('name');
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(3);
+  const [postPerPage, setPostPerPage] = useState(6);
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage
   const currentPosts = dataDisplay.slice(firstPostIndex, lastPostIndex);

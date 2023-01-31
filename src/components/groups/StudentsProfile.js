@@ -23,10 +23,23 @@ const StudentsProfile = () => {
   const [cgpa, setCGPA] = useState({});
   const [courseTotals, setCourseTotals] = useState(null);
   const [courseRem, setCourseRem] = useState(null);
-  const [endrose, setEndrose] = useState(null);
-  const [userLoginId, setUserLoginId] = useState(id);
+  const [endroseGiven, setEndroseGiven] = useState(null);
+  const [endroseRecv, setEndroseRecv] = useState(null);
 
-  console.log(userLoginId);
+  useEffect(() => {
+    if (id !== undefined) {
+      localStorage.setItem('id', id)
+    }
+  }, [id])
+
+  const [userLoginId, setUserLoginId] = useState(localStorage.getItem('id') || id);
+
+  useEffect(() => {
+    if (id !== undefined) {
+      localStorage.setItem('id', id)
+    }
+  }, [id])
+
   useEffect(() => {
     async function fetchData() {
       const res = await axios.get(`http://18.183.141.57/management/student-detail/${userLoginId}/`);
@@ -40,7 +53,8 @@ const StudentsProfile = () => {
       setCGPA(res.data.cgpa);
       setCourseTotals(res.data.courses_total);
       setCourseRem(res.data.courses_done);
-      setEndrose(res.data.endorsements);
+      setEndroseGiven(res.data.endorsements_given);
+      setEndroseRecv(res.data.endorsements_taken);
     }
     fetchData();
   }, [])
@@ -66,7 +80,7 @@ const StudentsProfile = () => {
                 <TopSkillVisual />
               </Grid>
             </Stack>
-            <Endorsment endorsements={endrose} />
+            <Endorsment endorsG={endroseGiven} endorsR={endroseRecv} />
           </Stack>
         </Grid>
         <Grid item xs={4}>

@@ -23,7 +23,8 @@ const StudentSearchProfile = () => {
   const [cgpa, setCGPA] = useState({});
   const [courseTotals, setCourseTotals] = useState(null);
   const [courseRem, setCourseRem] = useState(null);
-  const [endrose, setEndrose] = useState(null);
+  const [endroseGiven, setEndroseGiven] = useState(null);
+  const [endroseRecv, setEndroseRecv] = useState(null);
   const [text, setText] = useState("search");
 
   useEffect(() => {
@@ -39,7 +40,8 @@ const StudentSearchProfile = () => {
       setCGPA(res.data.cgpa);
       setCourseTotals(res.data.courses_total);
       setCourseRem(res.data.courses_done);
-      setEndrose(res.data.endorsements);
+      setEndroseGiven(res.data.endorsements_given);
+      setEndroseRecv(res.data.endorsements_taken);
     }
     fetchData();
   }, [])
@@ -64,7 +66,7 @@ const StudentSearchProfile = () => {
                 <TopSkillVisual />
               </Grid>
             </Stack>
-            <Endorsment endorsements={endrose} />
+            <Endorsment endorsG={endroseGiven} endorsR={endroseRecv} displayStatus={text} userIDSearch={id}/>
           </Stack>
         </Grid>
         <Grid item xs={4}>

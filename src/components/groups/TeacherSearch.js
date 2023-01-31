@@ -101,8 +101,6 @@ const TeacherSearch = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await axios.get('http://18.183.141.57/management/teacher-list/');
-      // setResponse(res.data);
-      console.log(res.data);
       let fullNameList = [];
       let field = [];
       let designation = [];
@@ -131,7 +129,7 @@ const TeacherSearch = () => {
   const [search, setSearch] = useState(dataDisplay);
   const [changeField, setChangeField] = useState('name');
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(3);
+  const [postPerPage, setPostPerPage] = useState(6);
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage
   const currentPosts = dataDisplay.slice(firstPostIndex, lastPostIndex);
@@ -143,7 +141,6 @@ const TeacherSearch = () => {
 
   const handleSearch = (e) => {
     const filtername = e.target.value.toLowerCase();
-    console.log(filtername)
 
     if (changeField === 'desg') {
       const searchedName = dataDisplay.filter(items => items.designation.toLowerCase().includes(filtername));
