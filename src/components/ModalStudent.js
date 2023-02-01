@@ -131,7 +131,7 @@ const ModalStudent = (props) => {
                         <TextField id="outlined-name" variant="standard" label="Name" fullWidth defaultValue={props.skill[0].name} onChange={(event) => handleChange(event, setName)} />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField id="outlined-descr" label="Profile Bio" variant="standard" fullWidth defaultValue={props.skill[0].descr} multiline error={Boolean(error)} maxRows={5} onChange={handleDescription} helperText={`You have wrote ${textNum}/125 characters`} />
+                        <TextField id="outlined-descr" label="Profile Bio" variant="standard" fullWidth defaultValue={props.skill[0].descr} multiline error={Boolean(error)} maxRows={5} onChange={handleDescription} helperText={`You have wrote ${!textNum ? props.skill[0].descr.length : textNum}/125 characters`} />
                     </Grid>
                 </Grid>
 

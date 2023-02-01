@@ -33,21 +33,20 @@ const GridView = (props) => {
                     </Grid>
 
                     <Grid item xs={10}>
-                        <Stack direction='row' spacing={1}>
+                        
                             <Typography variant='title' sx={{ fontWeight: 'bold', color: '#153E52', paddingTop: '1.5px'}}>{props.TeacherFName}</Typography>
-                            <Typography variant='title' sx={{ color: '#153E52'}}>|</Typography>
-                            <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{props.TeacherField}</Typography>
-                        </Stack>
+                            <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`Field: ${props.TeacherField}`}</Typography>
+                        
                         <Stack direction='row' spacing={1} marginTop="2px">
                             {
                                 props.TypeAPI === 'student' ? (
-                                    <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{`Semester: ${props.TeacherDesignation}`}</Typography>
+                                    <Typography variant='title' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{`Semester: ${props.TeacherDesignation}`}</Typography>
                                 ) : (
-                                    <Typography variant='p' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{`Post: ${props.TeacherDesignation}`}</Typography> 
+                                    <Typography variant='title' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{`Post: ${props.TeacherDesignation}`}</Typography> 
                                 )
                             }
                         </Stack>
-                        <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px'}}>{props.TeacherInfo}</Typography> 
+                        <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px', marginTop: '5px'}}>{props.TeacherInfo}</Typography> 
                         <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
                     </Grid>
                 </Grid>

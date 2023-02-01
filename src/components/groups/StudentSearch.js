@@ -197,14 +197,14 @@ const StudentSearch = () => {
               search.length === 0 ? 
                 (currentPosts.map((item) => (
                   <Grid item xs={4} key={item.id}>
-                    <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
+                    <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 110)} TypeAPI={item.typeAPI} />
                   </Grid>
                 ))
                 ) : search.length !== 0 ?
                 (
                   search.map((item) => (
                     <Grid item xs={4} key={item.id}>
-                      <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
+                      <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.department} TeacherDesignation={item.sem} TeacherInfo={limitString(item.descr, 110)} TypeAPI={item.typeAPI} />
                     </Grid>
                   ))
                 ) : null   
