@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { AppBar, Typography, Toolbar, Tabs, Tab, useMediaQuery, useTheme, Tooltip, Menu, Box, MenuItem, IconButton } from '@mui/material';
 import { Avatar } from '@mui/material';
 import DrawerComp from '../DrawerComp';
@@ -51,7 +51,7 @@ const PAGES = [
 
 function Nav() {
 
-  const id = 2;
+  // const name = useContext(UserContext);
 
   const [tabColor, setTabColor] = useState(Number(localStorage.getItem('myValue')) || 3);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -108,12 +108,11 @@ function Nav() {
               }}>
                 {
                   PAGES.map((page, index) => (
-                    <Tab key={index} label={page.label} to={page.path} component={NavLink} state={{ user_id: id }} />
+                    <Tab key={index} label={page.label} to={page.path} component={NavLink} />
                   ))
                 }
               </Tabs>
 
-              {/* <Avatar alt="React" src={profilePic} sx={{marginLeft: "auto"}} /> */}
               <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

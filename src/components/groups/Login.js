@@ -127,6 +127,7 @@ const Login = (props) => {
   // }
 
   useEffect(() => {
+    localStorage.clear();
     if (user === 'student' && access === true) {
       navigate('/student-profile', {
         state: {

@@ -26,12 +26,7 @@ const EndrosementModal = (props) => {
     const [dateEndrose, setDate] = useState(new Date());
     const [textNum, setTextNum] = useState(0)
     const profileId = Number(localStorage.getItem('id'))
-
-    const formattedDate = dateEndrose.toLocaleString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-    });
+    const formattedDate = dateEndrose.toISOString().split('T')[0]
     
     const handleDescription = (e) => {
         const str = e.target.value;
@@ -43,7 +38,6 @@ const EndrosementModal = (props) => {
             setError(0)
         }
     }
-
 
     const handleSubmitClose = (event) => {
         if (error === 1){

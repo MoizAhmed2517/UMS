@@ -8,8 +8,8 @@ import SchoolIcon from '@mui/icons-material/School';
 import { Link } from 'react-router-dom';
 import ModalStudent from './ModalStudent';
 
-function createData( name, descr, talks, pnum, location, org, year ) {
-  return { name, descr, talks, pnum, location, org, year };
+function createData( name, descr, talks, pnum, location, org, year, portfolio ) {
+  return { name, descr, talks, pnum, location, org, year, portfolio };
 }
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -31,7 +31,7 @@ const experience = [
 
 const InfoCardStudent = (props) => {
   const rows = [
-    createData(props.studentName, props.studentProfile.slice(0,110), props.studentTalks, props.studentPNum, props.studentLocation, props.studentDept, props.studentSemester),
+    createData(props.studentName, props.studentProfile.slice(0,110), props.studentTalks, props.studentPNum, props.studentLocation, props.studentDept, props.studentSemester, props.studentPortfolio),
   ];
 
   const [openEdit, setOpenEdit] = useState(false);
@@ -41,6 +41,10 @@ const InfoCardStudent = (props) => {
     setSelectedRow(row);
   }
   const handleCloseModalEdit = () => setOpenEdit(false);
+
+  const handlePortfolio = () => {
+    window.open(props.studentPortfolio, '_blank');
+  }
 
   return (
     <Paper sx={{padding: "5px", borderRadius: '10px', height: '425px'}} elevation={6}>
@@ -84,7 +88,7 @@ const InfoCardStudent = (props) => {
                   </Button>
                 )
               }
-              <ModalStudent openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} />
+              <ModalStudent openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} id={props.userId}/>
             </Avatar>
             
           </Stack>
@@ -114,7 +118,7 @@ const InfoCardStudent = (props) => {
                 }
 
                 <Stack direction='row' spacing={1} marginTop='10px'>
-                  <StyledButton variant="outlined" component={Link} to='/Technical-Records'>Projects</StyledButton>
+                  <StyledButton variant="outlined" onClick={handlePortfolio} >Portfolio</StyledButton>
                 </Stack>
 
               </Box>
