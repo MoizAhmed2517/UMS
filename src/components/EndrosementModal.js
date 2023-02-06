@@ -4,7 +4,6 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Typography, Stack, Grid, Button, Avatar } from '@mui/material';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import { useUserId } from './groups/useUserId';
 import axios from 'axios';
 
 const style = {

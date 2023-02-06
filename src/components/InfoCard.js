@@ -24,14 +24,14 @@ const experience = [
   }
 ]
 
-const InfoCard = () => {
+const InfoCard = (props) => {
 
   const [open, setOpen] = useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
 
   return (
-    <Paper sx={{padding: "5px", borderRadius: '10px', height: '425px'}} elevation={6}>
+    <Paper sx={{padding: "5px", borderRadius: '10px', height: '375px'}} elevation={6}>
       
       <Box sx={{
         backgroundImage: `url(${Image})`,
@@ -81,17 +81,17 @@ const InfoCard = () => {
               }}>
                 
                 <Stack direction='column'>
-                  <Typography variant='h5' sx={{ fontWeight: 'bold' }}>Harris Ali</Typography>
-                  <Typography variant='title' sx={{ color: 'gray' }}>Assistant Professor | Software Engineering | Sir Syed University | MUsic Lover</Typography>
-                  <Typography variant='title' sx={{ color: 'gray', fontSize: 13, marginTop: 1 }}>Talks about: #machinlearning, #artificialintelligence  </Typography>
-                  <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: 1 }}>+92 335 XXX-XXXX</Typography>
+                  <Typography variant='h5' sx={{ fontWeight: 'bold' }}>{props.name}</Typography>
+                  <Typography variant='title' sx={{ color: 'gray' }}>{props.desc}</Typography>
+                  <Typography variant='title' sx={{ color: 'gray', fontSize: 13, marginTop: 1 }}>Talks about: {props.talks}  </Typography>
+                  <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: 1 }}>{props.pNum}</Typography>
                   <Typography variant='p' sx={{ color: 'gray', fontSize: 12 }}>Karachi, Sindh, Pakistan</Typography>
                 </Stack>
 
-                <Stack direction='row' spacing={1} marginTop='10px'>
+                {/* <Stack direction='row' spacing={1} marginTop='10px'>
                   <StyledButton variant="outlined">Research</StyledButton>
                   <StyledButton variant="outlined">Projects</StyledButton>
-                </Stack>
+                </Stack> */}
 
               </Box>
             </Grid>
@@ -100,30 +100,22 @@ const InfoCard = () => {
               <Box sx={{
                   marginTop: '12px',
                 }}>
+                  <Stack direction='row' spacing={2}  marginTop={2}>
+                    <Avatar sx={{
+                      height: 35,
+                      width: 35,
+                      bgcolor: '#153E52',
+                    }}>
+                      <StoreOutlinedIcon/>
+                    </Avatar>
+                    <Typography variant="title" >{props.org}</Typography>
+                  </Stack>
 
-                  {
-                    experience.map((text, index) => (
-                      <React.Fragment key={index}>
-                        <Stack direction='row' spacing={2}  marginTop={2}>
-                          <Avatar sx={{
-                            height: 35,
-                            width: 35,
-                            bgcolor: '#153E52',
-                          }}>
-                            <StoreOutlinedIcon/>
-                          </Avatar>
-                          <Typography variant="title" >{text.org}</Typography>
-                        </Stack>
-
-                        <Stack direction='row' spacing={2}>
-                          <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: '-15px', marginLeft: '50px' }} >Working Since:
-                            <Typography variant='p' sx={{ color: '#153E52', fontSize: 12, marginTop: '-15px', marginLeft: '5px', textDecoration: 'underline'}}>{text.year}</Typography>
-                          </Typography>
-                      </Stack>
-                    </React.Fragment>
-                    ))
-                  }
-
+                  <Stack direction='row' spacing={2}>
+                    <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: '-15px', marginLeft: '50px' }} >Working Since:
+                      <Typography variant='p' sx={{ color: '#153E52', fontSize: 12, marginTop: '-15px', marginLeft: '5px', textDecoration: 'underline'}}>{props.year}</Typography>
+                    </Typography>
+                </Stack>
               </Box>
             </Grid>
 

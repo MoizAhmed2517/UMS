@@ -35,19 +35,37 @@ const GridView = (props) => {
                     <Grid item xs={10}>
                         
                             <Typography variant='title' sx={{ fontWeight: 'bold', color: '#153E52', paddingTop: '1.5px'}}>{props.TeacherFName}</Typography>
-                            <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`Field: ${props.TeacherField}`}</Typography>
+                            {
+                                props.TypeAPI === 'recruiter' ? (
+                                    <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`Company: ${props.TeacherField}`}</Typography>
+                                ) : (
+                                    <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`Field: ${props.TeacherField}`}</Typography>
+                                )
+                            }
                         
                         <Stack direction='row' spacing={1} marginTop="2px">
                             {
                                 props.TypeAPI === 'student' ? (
                                     <Typography variant='title' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{`Semester: ${props.TeacherDesignation}`}</Typography>
                                 ) : (
-                                    <Typography variant='title' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{`Post: ${props.TeacherDesignation}`}</Typography> 
+                                    <Typography variant='title' sx={{ fontSize: '14px', color: '#153E52', paddingTop: '1.5px'}}>{`Postition: ${props.TeacherDesignation}`}</Typography> 
                                 )
                             }
                         </Stack>
-                        <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px', marginTop: '5px'}}>{props.TeacherInfo}</Typography> 
-                        <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
+                        {
+                            props.TypeAPI === 'recruiter' ? (
+                                <>
+                                    <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`#Hiring: ${props.TeacherInfo}`}</Typography>
+                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
+                                </>
+                            ) : (
+                                <>
+                                    <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px', marginTop: '5px'}}>{props.TeacherInfo}</Typography>
+                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
+                                </>
+                            )
+                        }
+                        
                     </Grid>
                 </Grid>
             </CardContent>

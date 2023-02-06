@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router';
 import Teacher from "../components/groups/Teacher";
 import TeacherSearch from "../components/groups/TeacherSearch";
 import StudentsProfile from "../components/groups/StudentsProfile";
-import RecruiterProfile from "../components/groups/RecruiterProfile";
+import RecruiterSearch from "../components/groups/RecruiterSearch";
 import Nav from './groups/Nav';
 import AboutUs from './groups/AboutUs';
 import StudentSearch from './groups/StudentSearch';
@@ -27,7 +27,7 @@ const AppRoutes = () => {
         <Route path='/Teachers-search' element={<><Nav /><TeacherSearch /></>}/>
         <Route path='/Student-search' element={<><Nav /><StudentSearch /> </>}/>
         <Route path='/student-profile' element={<><Nav /><StudentsProfile /></>}/>
-        <Route path='/Recruiter' element={<><Nav /><RecruiterProfile /></>}/>
+        <Route path='/Recruiter-search' element={<><Nav /><RecruiterSearch /> </>}/>
         <Route path='/AboutUs' element={<><Nav /><AboutUs /></>}/>
         <Route path='/Students-search' element={<><Nav /><StudentSearch /></>}/>
         <Route path='/Quiz-Overview' element={<><Nav /><QuizOverview /></>}/>

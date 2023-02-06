@@ -17,13 +17,12 @@ function createData(position, company, type, fromDate, toDate, location) {
   }
   
 
-
 const Experience = (props) => {
 
   const rows = []
 
   props.exp && props.exp.map((item) => {
-    rows.push(createData(item.position, item.name, 'Full Time', item.start_date, item.end_date, 'Karachi, Pakistan'))
+    rows.push(createData(item.position, item.name, item.type, item.start_date, item.end_date, 'Karachi, Pakistan'))
   })
 
   const [open, setOpen] = useState(false);

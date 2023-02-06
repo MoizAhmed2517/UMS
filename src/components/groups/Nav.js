@@ -41,7 +41,7 @@ const PAGES = [
     label: 'Students'
   },
   {
-    path: '/Recruiter',
+    path: '/Recruiter-search',
     label: 'Recruiters'
   },
   {
