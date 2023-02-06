@@ -33,7 +33,7 @@ function createData(id, userType, email, password) {
 const dummyUsers = [
   createData( 1, 'student', 'huzaifa.ahmed@gmail.com', '123455'),
   createData( 2, 'student', 'syed.samia@gmail.com', '123456'),
-  createData( 2, 'teacher','harris.ali@gmail.com', 'abcde'),
+  createData( 1, 'teacher','aqeel.rehman@gmail.com', 'abcde'),
   createData( 3, 'recruiter','Sadia.jamal@hotmail.com', 'qwerty'),
 ];
 
@@ -131,11 +131,17 @@ const Login = (props) => {
     if (user === 'student' && access === true) {
       navigate('/student-profile', {
         state: {
-          userId: userId
+          userId: userId,
+          type: user,
         }
       });
     } else if (user === 'teacher' && access === true) {
-      navigate('/Teacher');
+      navigate('/Teacher', {
+        state: {
+          userId: userId,
+          type: user,
+        }
+      });
     } else if (user === 'recruiter' && access === true){
       navigate('/Recruiter');
     }

@@ -8,6 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { bounceIn } from 'react-animations';
 import banner from '../../static/images/Logo/logooo.png';
 import { StyleSheet, css } from 'aphrodite';
+import { useNavigate } from 'react-router';
 
 const styles = StyleSheet.create({
   bounceIn: {
@@ -52,7 +53,8 @@ const PAGES = [
 function Nav() {
 
   // const name = useContext(UserContext);
-
+  const navigate = useNavigate();
+  const type = localStorage.getItem('type')
   const [tabColor, setTabColor] = useState(Number(localStorage.getItem('myValue')) || 3);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -65,6 +67,23 @@ function Nav() {
     setAnchorEl(null);
     if (label === "Logout") {
       localStorage.clear();
+      navigate('/');
+    }
+
+    if (label === "Profile"){
+      console.log(type);
+      if (type === "student") {
+        console.log(type);
+        navigate('/student-profile');
+
+      } else if (type === "teacher") {
+        console.log(type);
+        navigate('/Teacher');
+
+      } else if (type === "recruiter") {
+        console.log(type);
+        navigate('/Recruiter');
+      }
     }
   };
 
@@ -137,7 +156,8 @@ function Nav() {
                 >
                   {settings.map((setting, index) => (
                     <MenuItem key={index} onClick={(e) => {handleCloseUserMenu(e, setting.label)}}>
-                      <Typography textAlign="center" to={setting.path} component={Link} sx={{ textDecoration: 'none', color: '#153E52' }}>{setting.label}</Typography>
+                      <Typography textAlign="center" sx={{ textDecoration: 'none', color: '#153E52' }}>{setting.label}</Typography>
+                      {/* <Typography textAlign="center" to={setting.path} component={Link} sx={{ textDecoration: 'none', color: '#153E52' }}>{setting.label}</Typography> */}
                     </MenuItem>
                   ))}
                 </Menu>
