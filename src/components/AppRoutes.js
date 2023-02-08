@@ -18,11 +18,13 @@ import Login from './groups/Login';
 import StudentSearchProfile from './groups/StudentSearchProfile';
 import AcademicRecordSearch from './AcademicRecordsScreens/AcademicRecordSearch';
 import TechnicalRecordSearch from './TechnicalRecords/TechnicalRecordSearch';
+import Signup from './groups/Signup';
 
 const AppRoutes = () => {
   return (
       <Routes>
         <Route exact path='/' element={<Login/>}/>
+        <Route path='/Signup' element={<Signup/>}/>
         <Route exact path='/Teacher' element={<><Nav /><Teacher /></>}/>
         <Route path='/Teachers-search' element={<><Nav /><TeacherSearch /></>}/>
         <Route path='/Student-search' element={<><Nav /><StudentSearch /> </>}/>
@@ -39,7 +41,7 @@ const AppRoutes = () => {
         <Route path='/QuizEnd' element={<><Nav /><QuizEnd /></>}/>
         <Route path='/StudentSearchProfile' element={<><Nav /><StudentSearchProfile /></>}/>
         <Route path='/Academic-Records-Search' element={<><Nav /><AcademicRecordSearch/></>}/>
-        <Route path='/Technical-Records-Search' element={<><Nav /><TechnicalRecordSearch/></>}/>
+        <Route path='/Technical-Records-Search' element={<><Nav /><TechnicalRecordSearch/></>}/> 
       </Routes>
   )
 }

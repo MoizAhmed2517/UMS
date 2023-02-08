@@ -21,6 +21,7 @@ const Teacher = () => {
   const [org, setOrg] = useState("");
   const [exp, setExp] = useState("");
   const [publication, setPublication] = useState("");
+  const [location, setLocation] = useState("Karachi, Sindh, Pakistan");
 
   useEffect(() => {
     if (id !== undefined && type !== undefined) {
@@ -49,7 +50,6 @@ const Teacher = () => {
       setExp(res.data.experience);
       setPublication(res.data.publication);
       res.data.experience.map((item) => {
-        console.log(item)
         setOrg(item.name)
         const date = new Date(item.start_date)
         const year = date.getFullYear();
@@ -70,7 +70,7 @@ const Teacher = () => {
         <Grid container spacing={2}>
           <Grid item xs={8}>
             <Stack direction="column" spacing={4}>
-              <InfoCard name={name} desc={profileDescr} talks={talks} pNum={pNum} year={year} org={org} />
+              <InfoCard name={name} desc={profileDescr} talks={talks} pNum={pNum} year={year} org={org} location={location} />
               <Experience exp={exp} />
               <Publication pub={publication} />
               <Activity />

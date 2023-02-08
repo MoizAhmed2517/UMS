@@ -76,7 +76,7 @@ const ModalStudent = (props) => {
 
     const handleSubmitClose = (event) => {
         if (error === 1 || errorTalks === 1){
-            alert("Please write description only for 200 characters OR You can write only three comma separated values in talks about")
+            alert("Please write description only for 125 characters OR You can write only three comma separated values in talks about")
         } else {
             event.preventDefault();
             const firstName = name.split(" ")[0];

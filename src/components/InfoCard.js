@@ -31,7 +31,7 @@ const InfoCard = (props) => {
   const handleCloseModal = () => setOpen(false);
 
   return (
-    <Paper sx={{padding: "5px", borderRadius: '10px', height: '375px'}} elevation={6}>
+    <Paper sx={{padding: "5px", borderRadius: '10px', height: '380px'}} elevation={6}>
       
       <Box sx={{
         backgroundImage: `url(${Image})`,
@@ -68,7 +68,7 @@ const InfoCard = (props) => {
               <Button variant="text" onClick={handleOpenModal}>
                 <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52' }} />
               </Button>
-              <TeacherModel openModal={open} handleClose={handleCloseModal} setOpenState={setOpen} />
+              <TeacherModel openModal={open} handleClose={handleCloseModal} setOpenState={setOpen} name={props.name} desc={props.desc} talk={props.talks} pNum={props.pNum} loc={props.location} />
             </Avatar>
             
           </Stack>
@@ -85,7 +85,7 @@ const InfoCard = (props) => {
                   <Typography variant='title' sx={{ color: 'gray' }}>{props.desc}</Typography>
                   <Typography variant='title' sx={{ color: 'gray', fontSize: 13, marginTop: 1 }}>Talks about: {props.talks}  </Typography>
                   <Typography variant='p' sx={{ color: 'gray', fontSize: 12, marginTop: 1 }}>{props.pNum}</Typography>
-                  <Typography variant='p' sx={{ color: 'gray', fontSize: 12 }}>Karachi, Sindh, Pakistan</Typography>
+                  <Typography variant='p' sx={{ color: 'gray', fontSize: 12 }}>{props.location}</Typography>
                 </Stack>
 
                 {/* <Stack direction='row' spacing={1} marginTop='10px'>

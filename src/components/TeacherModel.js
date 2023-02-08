@@ -21,9 +21,48 @@ const style = {
 
 const TeacherModel = (props) => {
 
-  const handleSubmitClose = () => {
-    props.setOpenState(false);
-  }
+  const [name, setName] = useState(props.name);
+  const [desc, setDesc] = useState(props.desc);
+  const [talks, setTalks] = useState(props.talk);
+  const [num, setNum] = useState(props.pNum);
+  const [loc, setLoc] = useState(props.loc);
+  const [errorTalks, setErrorTalks] = useState(0);
+  const [error, setError] = useState(0);
+  const [textNum, setTextNum] = useState(0);
+  console.log(textNum);
+
+  const handleTalks = (e) => {
+    let str = e.target.value;
+    if (str.split(",").length > 3){
+        setErrorTalks(1)
+    } else {
+        setErrorTalks(0)
+        setTalks(str.split(",").slice(0, 3).join(","))
+        }
+    }
+
+    const handleDescription = (e) => {
+        const str = e.target.value;
+        setDesc(e.target.value);
+        setTextNum(str.length)
+        if (str.length > 125){
+            setError(1)
+        } else {
+            setError(0)
+        }
+    }
+
+    function handleChange(event, setState) {
+        setState(event.target.value);
+    }
+
+    const handleSubmitClose = () => {
+        if (error === 1 || errorTalks === 1){
+            alert("Please write description only for 125 characters OR You can write only three comma separated values in talks about")
+        } else {
+            props.setOpenState(false);
+            }   
+        }
 
 
   return (
@@ -50,22 +89,33 @@ const TeacherModel = (props) => {
             
             <Grid container spacing={2} marginTop={1}>
                 <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="Change Name" variant="outlined" />
+                    <TextField id="outlined-basic" label="Change Name" variant="outlined" defaultValue={props.name} onChange={(event) => handleChange(event, setName)}/>
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="Change Phone Number" variant="outlined" />
+                    <TextField id="outlined-basic" label="Change Phone Number" variant="outlined" defaultValue={props.pNum} />
                 </Grid>
             </Grid>
 
             <Grid container spacing={2} marginTop={1}>
                 <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Profile Description" variant="outlined" fullWidth/>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Profile Description" 
+                        variant="outlined" 
+                        fullWidth 
+                        multiline 
+                        defaultValue={props.desc} 
+                        error={Boolean(error)} 
+                        maxRows={5} 
+                        onChange={handleDescription} 
+                        helperText={`You have wrote ${textNum}/125 characters`}
+                    />
                 </Grid>
             </Grid>
 
             <Grid container spacing={2} marginTop={1} marginBottom={1}>
                 <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Talks about" variant="outlined" fullWidth helperText="Use Comma to seprate subjects"/>
+                    <TextField id="outlined-basic" label="Talks about" variant="outlined" fullWidth helperText="Use Comma to seprate subjects" defaultValue={props.talk} onChange={handleTalks} error={Boolean(errorTalks)} />
                 </Grid>
             </Grid>
 

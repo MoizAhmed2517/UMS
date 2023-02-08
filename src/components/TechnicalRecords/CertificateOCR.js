@@ -67,7 +67,7 @@ const CertificateOCR = (props) => {
         image,
         "eng",
         { logger: (m) => {
-            // console.log(m);
+            console.log(m);
             if(m.status === "recognizing text"){
               setDispProgress(true);
               setProgress(parseInt(m.progress * 100));
@@ -77,6 +77,7 @@ const CertificateOCR = (props) => {
       ).then(({ data: {text} }) => {
         setCertUrl(text.match(/Certificate url: (.*?) /)[1]);
         setCertNum(text.match(/Certificate url: (.*?) /)[1]);
+        console.log({text})
       })
     } else if (isLoading === true && extension === 'pdf') {
        

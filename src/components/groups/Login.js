@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -25,6 +25,7 @@ import StudentsProfile from './StudentsProfile';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useUserId } from '../groups/useUserId';
+import { Link } from 'react-router-dom';
 
 function createData(id, userType, email, password) {
   return {id, userType, email, password};
@@ -34,7 +35,7 @@ const dummyUsers = [
   createData( 1, 'student', 'huzaifa.ahmed@gmail.com', '123455'),
   createData( 2, 'student', 'syed.samia@gmail.com', '123456'),
   createData( 1, 'teacher','aqeel.rehman@gmail.com', 'abcde'),
-  createData( 3, 'recruiter','Sadia.jamal@hotmail.com', 'qwerty'),
+  createData( 2, 'recruiter','moiz.ahmed@gmail.com', 'qwerty'),
 ];
 
 function Copyright(props) {
@@ -153,7 +154,6 @@ const Login = (props) => {
         <CssBaseline />
         <Grid item xs={false} sm={false} md={7} sx={{
             backgroundImage: `url(${banner})`,
-            // backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
@@ -238,8 +238,8 @@ const Login = (props) => {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link to='/Signup' variant="body2">
+                    {"Are you a recruiter? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
