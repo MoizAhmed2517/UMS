@@ -27,7 +27,7 @@ const Certificates = (props) => {
   const rows = []
 
   props.certifcatesData && props.certifcatesData.map((item) => {
-    rows.push(createData('Raspbian Full Stack', item.datetime, item.platform, 'UC-01757b49-c3bf-467a-afa0-1e2f3cf824e0', 'No Expiration', 'Yes'))
+    rows.push(createData(item.certificate_name, item.datetime, item.platform, item.link, 'No Expiration', 'Yes'))
   })
 
   const [open, setOpen] = useState(false);

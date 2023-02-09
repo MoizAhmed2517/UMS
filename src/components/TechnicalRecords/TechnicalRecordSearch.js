@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom'
 
 const TechnicalRecordSearch = () => {
     const locationexist = useLocation()
-    const id = locationexist.state?.id
+    const id = localStorage.getItem('id');
     const displayStatus = locationexist.state?.displayStatus
     const [skills, setSkill] = useState(null);
     const [experience, setExperience] = useState(null);

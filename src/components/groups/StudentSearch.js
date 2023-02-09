@@ -79,6 +79,8 @@ const StudentSearch = () => {
 
   const [dataDisplay, setDataDisplay] = useState([]);
   const [userSearchId, setUserSearchId] = useState(0);
+  const [skill, setSkill] = useState("Javascript");
+  const [] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -191,6 +193,82 @@ const StudentSearch = () => {
 
           </Grid>
         </Paper>
+
+        <Paper sx={{ marginTop: 2, p: 2}}>
+          <Grid container spacing={1}>
+
+            <Grid item xs={2}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Skill</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={skill}
+                  label="Skill"
+                  onChange={handleChange}
+                >
+                  <MenuItem value="Javascript">Javascript</MenuItem>
+                  <MenuItem value="Python">Python</MenuItem>
+                  <MenuItem value="HTML">HTML</MenuItem>
+                  <MenuItem value="CSS">CSS</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={2}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Experience</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={skill}
+                  label="Expereince"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={1}>{`< 6 months`}</MenuItem>
+                  <MenuItem value={2}>{`< 1 year`}</MenuItem>
+                  <MenuItem value={3}>{`< 2 year`}</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={2}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Department</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={skill}
+                  label="Department"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={2}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Department</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={skill}
+                  label="Department"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+          </Grid>
+        </Paper>
+        
 
         <Grid container spacing={2} marginTop={1}>
             { 

@@ -14,7 +14,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Checkbox from '@mui/material/Checkbox';
-import { useUserId } from '../groups/useUserId';
 import axios from 'axios';
 
 const style = {
@@ -40,7 +39,7 @@ const ModalExperience = (props) => {
     const [check, setCheck] = useState(true);
     // const [toDate, setToDate] = useState("Present");
     const [toDate, setToDate] = useState(null);
-    const { userId, setUserId } = useUserId();
+    const id = localStorage.getItem("id");
 
     function handleChange(event, setState) {
         setState(event.target.value);
@@ -55,7 +54,7 @@ const ModalExperience = (props) => {
             //     
             // }
             // const item = {
-            //     student_id: userId,
+            //     student_id: id,
             //     company_name: company,
             //     position : position,
             //     start_date: fromDate,

@@ -8,11 +8,9 @@ import Freelancing from './Freelancing';
 import Projects from './Projects';
 import Certificates from './Certificates';
 import axios from 'axios';
-import { useLocation } from 'react-router';
 
 const TechnicalRecords = () => {
-  const locationexist = useLocation();
-  const id = locationexist.state?.userId
+  const id = localStorage.getItem('id');
   const [skills, setSkill] = useState(null);
   const [experience, setExperience] = useState(null);
   const [project, setProject] = useState(null);

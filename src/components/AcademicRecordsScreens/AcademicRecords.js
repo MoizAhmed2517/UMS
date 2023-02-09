@@ -10,7 +10,7 @@ import { useLocation } from 'react-router';
 
 const AcademicRecords = () => {
   const locationexist = useLocation();
-  const id = locationexist.state?.userId
+  const id = localStorage.getItem('id');
   const [courses, setCourses] = useState(null);
   const [gpa, setGPA] = useState({});
   const [quiz, setQuiz] = useState(null)

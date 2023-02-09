@@ -2,12 +2,10 @@ import {Box, Card, CardContent, Typography, Grid, Avatar, Stack} from '@mui/mate
 import React from 'react';
 import { Link } from "react-router-dom";
 import Chip from '@mui/material/Chip';
-import { useUserId } from './groups/useUserId';
 import { useNavigate } from 'react-router-dom';
 
 const GridView = (props) => {
 
-  const { searchUserId, setSearchUserId } = useUserId();
   const navigate = useNavigate();
 
   const handleChip = () => {

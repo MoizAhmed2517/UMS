@@ -72,7 +72,7 @@ const CertificateOCR = (props) => {
           } 
         }
       ).then(({ data: {text} }) => {
-
+        console.log(text)
         if (text.includes("ude.my")) {
           setPlatform("Udemy");
           console.log(text.includes("Moiz Ahmed"))

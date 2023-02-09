@@ -4,7 +4,6 @@ import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Typography, Stack, Grid, Button, Avatar } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { useUserId } from '../groups/useUserId';
 import axios from 'axios';
 
 const style = {
@@ -21,7 +20,8 @@ const style = {
   };
 
 const ModalProjects = (props) => {
-
+    
+  const id = localStorage.getItem('id');
   const [title, setTitle] = useState('');
   const [descr, setDescr] = useState('');
   const [topSkill1, setTopSkill1] = useState('');
@@ -29,7 +29,6 @@ const ModalProjects = (props) => {
   const [topSkill3, setTopSkill3] = useState('');
   const [textLen, setTextLen] = useState(0);
   const [error, setError] = useState(false);
-  const { userId, setUserId } = useUserId();
 
   const handleSubmitClose = (event) => {
     if(!title && !descr && !topSkill1 && !topSkill2 && !topSkill3){
@@ -40,7 +39,7 @@ const ModalProjects = (props) => {
         } else {
             event.preventDefault();
             const item = {
-                student_id: userId,
+                student_id: id,
                 name: title,
                 description: descr,
                 top_skill1: topSkill1,
