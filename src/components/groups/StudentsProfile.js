@@ -34,8 +34,9 @@ const StudentsProfile = () => {
     if (id !== undefined && type !== undefined) {
       localStorage.setItem('id', id)
       localStorage.setItem('type', type)
+      localStorage.setItem('name', name)
     }
-  }, [id, type])
+  }, [id, type, name])
 
   const [userLoginId, setUserLoginId] = useState(localStorage.getItem('id') || id);
   const [userType, setUserType] = useState(localStorage.getItem('type') || type);
