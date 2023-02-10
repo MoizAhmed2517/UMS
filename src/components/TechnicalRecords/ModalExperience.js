@@ -128,15 +128,15 @@ const ModalExperience = (props) => {
                         <FormControl fullWidth>
                             <InputLabel id="Type-Select">Type</InputLabel>
                             <Select
-                            labelId="Type-Select"
-                            id="demo-simple-select"
-                            value={type}
-                            label="Age"
-                            onChange={handleType}
-                            >
-                            <MenuItem value={1}>Full-Time</MenuItem>
-                            <MenuItem value={2}>Part-Time</MenuItem>
-                            <MenuItem value={3}>Internship</MenuItem>
+                                labelId="Type-Select"
+                                id="demo-simple-select"
+                                value={type}
+                                label="Age"
+                                onChange={handleType}
+                                >
+                                <MenuItem value={1}>Full-Time</MenuItem>
+                                <MenuItem value={2}>Part-Time</MenuItem>
+                                <MenuItem value={3}>Internship</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>

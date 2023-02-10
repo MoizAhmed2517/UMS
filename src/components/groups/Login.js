@@ -24,7 +24,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import StudentsProfile from './StudentsProfile';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { useUserId } from '../groups/useUserId';
 import { Link } from 'react-router-dom';
 
 function createData(id, userType, email, password) {
@@ -36,6 +35,7 @@ const dummyUsers = [
   createData( 2, 'student', 'syed.samia@gmail.com', '123456'),
   createData( 1, 'teacher','aqeel.rehman@gmail.com', 'abcde'),
   createData( 2, 'recruiter','moiz.ahmed@gmail.com', 'qwerty'),
+  createData( 1, 'recruiter','john.doe@gmail.com', '1234qwerty'),
 ];
 
 function Copyright(props) {
@@ -53,11 +53,11 @@ const theme = createTheme();
 const Login = (props) => {
 
   const navigate = useNavigate();
-  const { userId, setUserId } = useUserId();
   const [credentials, setCredentials] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState('student');
   const [access, setAccess] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const handleChangeSelectUser = (event) => {
     setUser(event.target.value);
@@ -144,7 +144,12 @@ const Login = (props) => {
         }
       });
     } else if (user === 'recruiter' && access === true){
-      navigate('/Recruiter');
+      navigate('/Recruiter', {
+        state: {
+          userId: userId,
+          type: user,
+        }
+      });
     }
   }, [access, navigate, user]);
   
