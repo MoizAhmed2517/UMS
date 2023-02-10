@@ -79,6 +79,10 @@ const InfoCardRecruiter = (props) => {
     window.open(link, '_blank');
   }
 
+  const handleOrgSite = () => {
+    window.open(props.orgWeb, '_blank');
+  }
+
   return (
     <Paper sx={{padding: "5px", borderRadius: '10px', height: '400px'}} elevation={6}>
       
@@ -197,7 +201,7 @@ const InfoCardRecruiter = (props) => {
                         <Stack direction='row'>
                           <Box sx={style}>
                             <Typography variant='p' sx={{ color: 'gray', fontSize: 12}}>{text.orgDesc}</Typography>
-                            <Button variant='text' sx={{ marginLeft: '3px', fontSize: 12}}>
+                            <Button variant='text' sx={{ marginLeft: '3px', fontSize: 12}} onChange={handleOrgSite}>
                                 Visit <CallMadeIcon sx={{ height: 15, width: 15 }}/>
                             </Button>
                           </Box>
