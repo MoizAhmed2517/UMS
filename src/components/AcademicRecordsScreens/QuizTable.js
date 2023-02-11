@@ -27,12 +27,12 @@ const QuizTable = (props) => {
             <Table stickyHeader  size="small" aria-label="sticky table">
                 <TableHead>
                     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                        <TableCell>Quiz Name</TableCell>
-                        <TableCell align="center">Badge</TableCell>
-                        <TableCell align="center">Date</TableCell>
-                        <TableCell align="center">Total Marks</TableCell>
-                        <TableCell align="center">Obtained Marks</TableCell>
-                        <TableCell align="center">Passing Marks</TableCell>
+                        <TableCell sx={{ fontWeight: 'bold' }}>Quiz Name</TableCell>
+                        <TableCell align="center" sx={{ fontWeight: 'bold' }}>Badge</TableCell>
+                        <TableCell align="center" sx={{ fontWeight: 'bold' }}>Date</TableCell>
+                        <TableCell align="center" sx={{ fontWeight: 'bold' }}>Total Marks</TableCell>
+                        <TableCell align="center" sx={{ fontWeight: 'bold' }}>Obtained Marks</TableCell>
+                        <TableCell align="center" sx={{ fontWeight: 'bold' }}>Passing Marks</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -42,8 +42,8 @@ const QuizTable = (props) => {
                             <TableCell align="center">{row.rank}</TableCell>
                             <TableCell align="center">{row.date}</TableCell>
                             <TableCell align="center">{row.totalMarks}</TableCell>
-                            <TableCell align="center">{row.obtainedMarks}</TableCell>
                             <TableCell align="center">{row.passingMarks}</TableCell>
+                            <TableCell align="center">{row.obtainedMarks}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

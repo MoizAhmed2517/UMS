@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Box, Paper, Typography, Stack, Grid, Button, IconButton, Tooltip} from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Image from '../static/images/banner/1.png';
+import Image from '../static/images/banner/profileBanner.jpg';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import LanguageIcon from '@mui/icons-material/Language';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';

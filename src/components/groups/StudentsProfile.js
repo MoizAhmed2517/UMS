@@ -29,6 +29,8 @@ const StudentsProfile = () => {
   const [endroseRecv, setEndroseRecv] = useState(null);
   const [portfolio, setPortfolio] = useState("");
   const [error404, setError404] = useState(false);
+  const [obeKPI, setObeKPI] = useState({});
+  const [quiz, setQuiz] = useState([]);
  
   useEffect(() => {
     if (id !== undefined && type !== undefined) {
@@ -65,6 +67,7 @@ const StudentsProfile = () => {
         setEndroseGiven(res.data.endorsements_given);
         setEndroseRecv(res.data.endorsements_taken);
         setPortfolio(res.data.portfolio);
+        setObeKPI(res.data.kpi_values);
       } else {
         setError404(true);
       }
@@ -95,7 +98,7 @@ const StudentsProfile = () => {
                         <PieChartstatus course_done={courseRem} courseTotal={courseTotals} />
                       </Grid>
                       <Grid item xs={6} sx={{ marginLeft: '20px',marginBottom: '10px' }}>
-                        <TopSkillVisual />
+                        <TopSkillVisual kpi={obeKPI}/>
                       </Grid>
                     </Stack>
                     <Endorsment endorsG={endroseGiven} endorsR={endroseRecv} />

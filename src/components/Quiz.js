@@ -8,14 +8,18 @@ import { useLocation } from 'react-router-dom'
 const Quiz = () => {
 
   const location = useLocation()
-  const question = location.state?.question
-  const time = location.state?.time
+  const question = location.state?.question;
+  const time = location.state?.time;
+  const name = location.state?.name;
+  const quizId = location.state?.quizId;
   const navigate = useNavigate();
   const handleQuizStart = () => {
     navigate('/QuizStart', {
         state: {
             quiz: question,
             quizTime: time,
+            name: name,
+            quizId: quizId
         }
     });
   }
@@ -30,7 +34,7 @@ const Quiz = () => {
                 marginBottom: 1,
             }}>
                 <Stack direction="row">
-                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>React JS</Typography>
+                    <Typography variant='h6' sx={{ fontWeight: 'bold' }}>{name}</Typography>
 
                     <Tooltip title="You have 15 mins to complete the quiz">
                         <Icon sx={{ fontSize: 25, marginLeft: '4px', color: '#153E52'}}><HelpOutlineRoundedIcon /></Icon>

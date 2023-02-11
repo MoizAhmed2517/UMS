@@ -5,22 +5,24 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import CongoConfetti from './CongoConfetti';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
-import PieChartSummaryQuiz from './Graphs/PieChartSummaryQuiz';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 
-let score = 92;
+
 
 const QuizEnd = () => {
 
+  let score = 92;
   const navigate = useNavigate();
   const location = useLocation()
-  const quizScore = location.state?.result
-  console.log(quizScore)
+  const quizScore = location.state?.result;
+  const totalScore = location.state?.total;
+  const name = location.state?.quizName;
 
   const handlehomeButton = () => {
     navigate('/Quiz-Overview');
   }
+
   return (
     <Container maxWidth="lg" sx={{ marginTop : '20px' }}>
 
@@ -31,7 +33,7 @@ const QuizEnd = () => {
             marginBottom: 1,
         }}>
             <Stack direction="row">
-                <Typography variant='h6' sx={{ fontWeight: 'bold' }}>React JS</Typography>
+                <Typography variant='h6' sx={{ fontWeight: 'bold' }}>{name}</Typography>
                 <Typography variant="h6" sx={{ marginLeft: 'auto', paddingRight: '15px'}} >Quiz End!</Typography>
             </Stack>
         </Box>
@@ -95,7 +97,7 @@ const QuizEnd = () => {
                             <Stack direction="row">
                                 <Grid container>
                                     <Grid item xs={5}>
-                                        <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>0</Typography>
+                                        <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>{quizScore}</Typography>
                                         <Typography variant="subtitle1" sx={{ display: 'flex', justifyContent: 'center' }}>Correct Answer</Typography>
                                         <Typography variant="h1" sx={{ display: 'flex', justifyContent: 'center', color: '#F39223'}}><SentimentSatisfiedAltIcon /></Typography>      
                                     </Grid>
@@ -103,21 +105,17 @@ const QuizEnd = () => {
                                         <Typography variant="h1" sx={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>|</Typography>
                                     </Grid>
                                     <Grid item xs={5}>
-                                        <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>0</Typography>
+                                        <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>{totalScore - quizScore}</Typography>
                                         <Typography variant="subtitle1" sx={{ display: 'flex', justifyContent: 'center' }}>Wrong Answer</Typography>
                                         <Typography variant="h1" sx={{ display: 'flex', justifyContent: 'center', color: '#F39223' }}><SentimentVeryDissatisfiedIcon /></Typography>
                                     </Grid>
                                 </Grid>
                             </Stack>
                             <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', paddingTop: '10px' }}>Your Score</Typography>
-                            <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', paddingTop: '10px' }}>{`${score}%`}</Typography>
+                            <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center', paddingTop: '10px' }}>{`${Math.round(((quizScore/totalScore) + Number.EPSILON) * 10000) / 100}%`}</Typography>
                         </Stack>  
                     </Box>
                 </Grid>
-
-                {/* <Grid item xs={6}>
-                    <PieChartSummaryQuiz />
-                </Grid> */}
             </Grid>
         </Box>
         <Button variant="contained" sx={{ backgroundColor: '#153E52',  width: '100%', marginTop: '10px', '&:hover': { backgroundColor: '#102f3e' } }} onClick={handlehomeButton}>Take New Assessment</Button>

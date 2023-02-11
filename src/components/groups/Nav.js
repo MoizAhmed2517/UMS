@@ -52,7 +52,6 @@ const PAGES = [
 
 function Nav() {
 
-  // const name = useContext(UserContext);
   const navigate = useNavigate();
   const type = localStorage.getItem('type')
   const [tabColor, setTabColor] = useState(Number(localStorage.getItem('myValue')) || 3);
@@ -71,17 +70,11 @@ function Nav() {
     }
 
     if (label === "Profile"){
-      console.log(type);
       if (type === "student") {
-        console.log(type);
         navigate('/student-profile');
-
       } else if (type === "teacher") {
-        console.log(type);
         navigate('/Teacher');
-
       } else if (type === "recruiter") {
-        console.log(type);
         navigate('/Recruiter');
       }
     }
