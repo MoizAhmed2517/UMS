@@ -16,16 +16,12 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { List, ListItem, ListItemText } from '@mui/material';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const skills = [
-    'Javascript',
-    'CSS',
-    'HTML',
-    'Python',
-    'Web3',
-    'R',
-    'React'
-];
+const skills = ['Javascript', 'Python', 'HTML', 'React', 'SEO', 'Machine Learning', 'OOP', 'Cyber Security', 'AWS', 'Java'];
 
 const theme = createTheme();
 
@@ -40,8 +36,9 @@ function getStyles(name, personName, theme) {
 
 const Signup = (props) => {
 
+    const navigate = useNavigate();
     const [user, setUser] = useState([]);
-
+    const [files, setFiles] =useState([]);
     const handleChangeSelectUser = (event) => {
     const {
         target: { value },
@@ -55,23 +52,59 @@ const Signup = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+        let statusValidation = false;
         const item = {
-          email: data.get('email'),
-          password: data.get('password'),
           name: data.get('firstName') + " " + data.get('lastName'),
-          company: data.get('Comapanyname'),
-          designation: data.get('Designation'),
-          companyweblink: data.get('Comapanyweblink'),
-          companydesc: data.get('ComapanyDescription'),
+          email: data.get('email'),
+          org_name: data.get('Comapanyname'),
+          position: data.get('Designation'),
+          website: data.get('Comapanyweblink'),
+          org_description: data.get('ComapanyDescription'),
           linkedin: data.get('LinkedinProfileLink'),
           github: data.get('GithubProfileLink'),
-          addresses: data.get('address'),
+          address: data.get('address'),
           country: data.get('country'),
           city: data.get('city'),
-          skill: ''
+          looking_for: data.get('skill'),
+          working_since: data.get('workingSince'),
+          contact: data.get('contact'),
         };
-        item.skill = user;
-        console.log(item);
+
+        const credentials = {
+          username: data.get('firstName') + data.get('lastName'),
+          email: data.get('email'),
+          password: data.get('password'),
+        }
+
+        for (const key in item){
+          if (item[key].trim() === ""){
+            alert(`The value of "${key}" is empty!`);
+            statusValidation = true;
+            break;
+          }
+        }
+
+        if(!statusValidation){
+          axios.post('http://18.183.141.57/management/recruiter-create/', item)
+            .then(response => {
+              if (response.status >= 200 || response.status<=205){
+                axios.post('http://18.183.141.57/auth/users/', credentials)
+                .then(response => {
+                  if (response.status >= 200 || response.status<=205){
+                    alert('You have successfully signup.');
+                    navigate('/');
+                  }
+                })
+                .catch(err => {
+                  alert(`Please check your password or username. Remember username do not have any special characters or spaces.`)
+                })
+              }
+            })
+            .catch(error => {
+            console.log(error);
+          });
+        }
+
       };
     
       return (
@@ -125,6 +158,7 @@ const Signup = (props) => {
                       label="Email Address"
                       name="email"
                       autoComplete="email"
+                      type="email"
                     />
                   </Grid>
 
@@ -151,6 +185,7 @@ const Signup = (props) => {
                             onChange={handleChangeSelectUser}
                             fullWidth={true}
                             multiple
+                            name='skill'
                         >
                             {skills.map((name) => (
                                 <MenuItem
@@ -162,6 +197,7 @@ const Signup = (props) => {
                                 </MenuItem>
                             ))}
                         </Select>
+                        <Typography variant='caption' sx={{ marginLeft: 1, marginTop: 1, color: 'rgba(4,30,66, 0.5)' }}>Note: Your first skill in this list will be considered as primary</Typography>
                     </FormControl>
                   </Grid>
 
@@ -182,6 +218,26 @@ const Signup = (props) => {
                       label="Designation"
                       id="Comapany-Designation"
                       autoComplete="new-Designation"
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      name="workingSince"
+                      label="Joining Year"
+                      id="joining-year"
+                      autoComplete="joining-year"
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      name="contact"
+                      label="Contact Number"
+                      id="contact"
+                      autoComplete="contact"
                     />
                   </Grid>
 
@@ -256,6 +312,40 @@ const Signup = (props) => {
                       id="City"
                       autoComplete="city"
                     />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Box sx={{
+                        border: '1px solid rgba(4,30,66, 0.3)',
+                        borderRadius: '5px',
+                        p: 2,
+                      }}>
+
+                        <Grid item xs={12}>
+                          <Button variant="outlined" component="label" fullWidth startIcon={<UploadFileIcon />}>
+                            Upload documents
+                            <input 
+                              hidden 
+                              accept="application/pdf" 
+                              type="file"
+                              multiple
+                              onChange={event => {
+                                setFiles(Array.from(event.target.files));
+                              }}
+                            />
+                          </Button>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                            <List>
+                              {files.map(file => (
+                                <ListItem key={file.name}>
+                                  <ListItemText primary={file.name} />
+                                </ListItem>
+                              ))}
+                            </List>
+                        </Grid>
+                      </Box>
                   </Grid>
 
                 </Grid>

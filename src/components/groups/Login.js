@@ -36,6 +36,8 @@ const dummyUsers = [
   createData( 1, 'teacher','aqeel.rehman@gmail.com', 'abcde'),
   createData( 2, 'recruiter','moiz.ahmed@gmail.com', 'qwerty'),
   createData( 1, 'recruiter','john.doe@gmail.com', '1234qwerty'),
+  createData( 15, 'recruiter','waleed.hussain@aws.com', 'qwerty12345!'),
+  createData( 16, 'recruiter','ali.abbas@aws.com', 'qwerty12345!'),
 ];
 
 function Copyright(props) {

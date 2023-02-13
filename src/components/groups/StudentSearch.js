@@ -84,10 +84,13 @@ const StudentSearch = () => {
   const semesters = ['All', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
   const cgpas = ['All', '0-0.5', '0.5-1', '1-1.5', '1.5-2', '2-2.5', '2.5-3', '3-3.5', '3.5-4'];
   const departments = ['All', 'Software Engineering', 'Computer Science'];
+  const primarySkills = localStorage.getItem('skills');
+  const type = localStorage.getItem('type');
 
   const [dataDisplay, setDataDisplay] = useState([]);
+  const [filterDataDisplay, setFilterDataDisplay] = useState([]);
   const [copyDataDisplay, setCopyDataDisplay] = useState([]);
-  const [skill, setSkill] = useState(skills[0].toLocaleLowerCase());
+  const [skill, setSkill] = useState(primarySkills.split(',')[0].toLocaleLowerCase());
   const [expereince, setExpereince] = useState(expereinces[0].toLocaleLowerCase())
   const [batch, setBatch] = useState(batches[0].toLocaleLowerCase())
   const [semester, setSemester] = useState(semesters[0].toLocaleLowerCase())
@@ -126,10 +129,19 @@ const StudentSearch = () => {
 
       setDataDisplay(datamap);
       setCopyDataDisplay(datamap);
+      const filterData = datamap.filter(student => student.skill.some(skills => primarySkills.includes(skills.name)));
+      setFilterDataDisplay(filterData);
     }
     fetchData();
   }, [])
-  
+
+  // let viewData = [];
+  // if (type === "recruiter") {
+  //   viewData = filterDataDisplay;
+  // } else {
+  //   viewData = dataDisplay;
+  // }
+  const [viewData, setViewData] = useState(dataDisplay)
   const [search, setSearch] = useState(dataDisplay);
   const [changeField, setChangeField] = useState('name');
   const [currentPage, setCurrentPage] = useState(1);
@@ -315,7 +327,7 @@ const StudentSearch = () => {
     setBatch("all");
     setSemester("all");
     setDepartment("all");
-    setSkill("javascript");
+    setSkill(primarySkills.split(',')[0].toLocaleLowerCase());
   }
 
   const handleSkill = (event) => {

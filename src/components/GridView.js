@@ -64,7 +64,7 @@ const GridView = (props) => {
                         {
                             props.TypeAPI === 'recruiter' ? (
                                 <>
-                                    <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`#Hiring: ${props.TeacherInfo}`}</Typography>
+                                    <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`#Hiring: ${props.TeacherInfo.split(',').slice(0,3)}`}</Typography>
                                     <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
                                 </>
                             ) : props.TypeAPI === 'student' ? (

@@ -102,7 +102,6 @@ const QuizOverview = () => {
   useEffect(() => {
     async function fetchData() {
         const res = await axios.get(`http://18.183.141.57/management/student-detail/${id}/`);
-        console.log(res.data.quizes);
         const quizData = res.data.quizes.map(item => ({
           tech: item[0],
           status: item[3]
@@ -111,8 +110,6 @@ const QuizOverview = () => {
     }
     fetchData();
   }, [])
-
-  // console.log(quizStatus);
   
   return (
     <Container maxWidth="lg" sx={{ marginTop : '20px' }}>
@@ -180,11 +177,12 @@ const QuizOverview = () => {
                                 <ListItemText primary={
                                     <React.Fragment>
                                         <Stack direction="row">
+                                         
                                             <Typography variant="title" sx={{ fontWeight: 'bold', color: '#153E52' }} component={Link} to='/Quiz-Start' state={{question: quiz.questions, time: quiz.time, name: quiz.name, quizId: quiz.id}} >{quiz.name}</Typography>
                                             <Tooltip title={iconsVal} placement="right">
                                                 <Box sx={{ marginLeft: '5px', marginTop: '1px'}}>
-                                                        {iconsVal === "Badge" ? <LocalPoliceIcon sx={{ fontSize: 16, color: '#F39223'}}/> : <LocalPoliceIcon sx={{ fontSize: 16, color: "gray"}}/>}
-                                                        {iconsVal === "Retry" ? <GppBadIcon sx={{ fontSize: 16, color: 'red'}}/> : ""}                
+                                                        {iconsVal === "Pass" ? <LocalPoliceIcon sx={{ fontSize: 16, color: '#F39223'}}/> : <LocalPoliceIcon sx={{ fontSize: 16, color: "gray"}}/>}
+                                                        {iconsVal === "Retake" ? <GppBadIcon sx={{ fontSize: 16, color: 'red'}}/> : ""}                
                                                 </Box>
                                             </Tooltip>
                                         </Stack>

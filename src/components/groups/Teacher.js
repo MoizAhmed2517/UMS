@@ -40,6 +40,10 @@ const Teacher = () => {
     }
   }, [id, type])
 
+  function saveData(data) {
+    localStorage.setItem('skills', data);
+  }
+
   useEffect(() => {
     async function fetchData() {
       const res = await axios.get(`http://18.183.141.57/management/teacher-detail/${userLoginId}/`);
@@ -54,7 +58,8 @@ const Teacher = () => {
         const date = new Date(item.start_date)
         const year = date.getFullYear();
         setYear(year)
-      })
+      });
+      saveData('all');
     }
     fetchData();
   }, [])

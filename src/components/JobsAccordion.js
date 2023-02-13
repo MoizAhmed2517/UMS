@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -7,6 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import { Paper, Grid, Stack, Box, Button, IconButton } from '@mui/material';
 import AddJobModel from './AddJobModel';
+import axios from 'axios';
 
 
 const postedJobs = [
@@ -40,13 +41,40 @@ const postedJobs = [
     }
 ];
 
-
+function createData(position, cgpa, skills, JobDescription) {
+    return {position, cgpa, skills, JobDescription};
+}
 
 const JobsAccordion = () => {
 
   const [open, setOpen] = useState(false);
   const handleOpenModal = () => setOpen(true);
   const handleCloseModal = () => setOpen(false);
+  const id = localStorage.getItem('id');
+  const [dataDisplay, setDataDisplay] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+        const res = await axios.get(`http://18.183.141.57/management/job-list/${id}/`);
+        const jobTitle = [];
+        const cgpa = [];
+        const jobDescription = [];
+        const requirements = [];
+        const datamap = [];
+        res.data.map(job => {
+            jobTitle.push(job.position);
+            cgpa.push(job.cgpa);
+            requirements.push(job.requirements);
+            jobDescription.push(job.job_description);
+        })
+
+        for (let i=0; i<requirements.length; i++) {
+            datamap.push(createData(jobTitle[i], cgpa[i], requirements[i], jobDescription[i]));
+        }
+        setDataDisplay(datamap);
+    }
+    fetchData();
+  }, [])
 
   return (
     <Paper elevation={6} sx={{ borderRadius: '10px'}}>
@@ -57,7 +85,7 @@ const JobsAccordion = () => {
                         marginLeft: 2.5,
                         marginTop: 1,
                     }}>
-                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Activity</Typography>
+                        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Posted Jobs</Typography>
                     </Box>
             </Grid>
 
@@ -81,18 +109,18 @@ const JobsAccordion = () => {
                 </Button >
                 <AddJobModel openModal={open} handleClose={handleCloseModal} setOpenState={setOpen}/>
             </Grid>
-
+            {/* position, cgpa, skills, JobDescription */}
             <Grid item xs={12}>
-                {postedJobs.map((items, index) => (
+                {dataDisplay && dataDisplay.map((items, index) => (
                     <Accordion key={index}>
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls={`panel${index}-content`}
                         id={`panel${index}-header`}
                         >
-                            <Typography variant="title" sx={{ width: '40%', flexShrink: 0, color: '#153E52'  }}>{items.JobTitle}</Typography>
-                            <Typography  variant="subtitle2"  sx={{ color: 'text.secondary', width: '40%', flexShrink: 0  }}>{items.Requirements}</Typography>
-                            <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>Min. CGPA: {items.CGPA}</Typography>
+                            <Typography variant="title" sx={{ width: '40%', flexShrink: 0, color: '#153E52'  }}>{items.position}</Typography>
+                            <Typography  variant="subtitle2"  sx={{ color: 'text.secondary', width: '40%', flexShrink: 0  }}>{items.skills}</Typography>
+                            <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>Min. CGPA: {items.cgpa}</Typography>
                         </AccordionSummary>,
                         <AccordionDetails>
                             <Typography variant='p'>{items.JobDescription}</Typography>

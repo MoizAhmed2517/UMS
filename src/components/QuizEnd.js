@@ -53,7 +53,7 @@ const QuizEnd = () => {
             elevation={12}
         >   
             {
-                score >= 70 ? (
+                Math.round(((quizScore/totalScore) + Number.EPSILON) * 10000) / 100 >= 40 ? (
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <Stack direction="column">
                             <Typography variant="h4" sx={{ paddingLeft: '100px', color: '#153E52' }}><AutoAwesomeIcon sx={{ color: '#F39223'}} /> Congratulations</Typography>

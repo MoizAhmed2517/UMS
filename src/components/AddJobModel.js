@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { Typography, Stack, Grid, Button, Avatar } from '@mui/material';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import WorkIcon from '@mui/icons-material/Work';
+import axios from 'axios';
 
 const style = {
     position: 'absolute',
@@ -20,9 +21,34 @@ const style = {
   };
 
 const AddJobModel = (props) => {
+
+  const [jobTitle, setJobTitle] = useState("");
+  const [minCgpa, setMinCgpa] = useState("");
+  const [jobsDescription, setJobDescription] = useState("");
+  const [skill, setSkill] = useState("");
+  const id = localStorage.getItem("id");
+
+  function handleChange(event, setState) {
+    setState(event.target.value);
+  }
   
   const handleSubmitClose = () => {
+        const item = {
+            position: jobTitle,
+            cgpa: minCgpa,
+            requirements : skill,
+            job_description: jobsDescription,
+            recruiter_id: id,
+        }
+        axios.post('http://18.183.141.57/management/job-create/', item)
+            .catch(error => {
+            console.log(error);
+        });
         props.setOpenState(false);
+  }
+
+  const handleSkills = (event) => {
+    setSkill(event.target.value.split(',').join(' | '))
   }
 
   return (
@@ -49,22 +75,22 @@ const AddJobModel = (props) => {
             
             <Grid container spacing={2} marginTop={1}>
                 <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="Title" variant="outlined" />
+                    <TextField id="outlined-basic" label="Title" variant="outlined" onChange={(event) => handleChange(event, setJobTitle)} />
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField id="outlined-basic" label="CGPA" variant="outlined" />
+                    <TextField id="outlined-basic" label="Min. CGPA" variant="outlined" onChange={(event) => handleChange(event, setMinCgpa)} />
                 </Grid>
             </Grid>
 
             <Grid container spacing={2} marginTop={1}>
                 <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Requirements" variant="outlined" fullWidth/>
+                    <TextField id="outlined-basic" label="Skills" variant="outlined" fullWidth helperText="Use Comma to seprate subjects" onChange={handleSkills}/>
                 </Grid>
             </Grid>
 
             <Grid container spacing={2} marginTop={1} marginBottom={1}>
                 <Grid item xs={12}>
-                    <TextField id="outlined-basic" label="Job Description" variant="outlined" fullWidth helperText="Use Comma to seprate subjects"/>
+                    <TextField id="outlined-basic" label="Job Description" variant="outlined" fullWidth onChange={(event) => handleChange(event, setJobDescription)} />
                 </Grid>
             </Grid>
 

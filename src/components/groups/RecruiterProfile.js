@@ -17,7 +17,7 @@ const RecruiterProfile = () => {
   const [recruiterId, setRecruiterId] = useState("");
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
-  const [lookingFor, setLookingFor] = useState("");
+  const [lookingFor, setLookingFor] = useState([]);
   const [contact, setContact] = useState("");
   const [location, setLocation] = useState("");
   const [linkedin, setLinkedin] = useState("");
@@ -27,7 +27,6 @@ const RecruiterProfile = () => {
   const [working, setWorking] = useState("");
   const [orgDescription, setOrgDescription] = useState("");
   const [orgWeb, setOrgWeb] = useState("");
-  const [skills, setSkills] = useState(['JavaScript', 'Python', 'HTML']);
  
   useEffect(() => {
     if (id !== undefined && type !== undefined) {
@@ -47,10 +46,13 @@ const RecruiterProfile = () => {
     }
   }, [id, type])
 
+  function saveData(data) {
+    localStorage.setItem('skills', data);
+  }
+
   useEffect(() => {
     async function fetchData() {
       if (userType === "recruiter") {
-
         const res = await axios.get(`http://18.183.141.57/management/recruiter-detail/${userLoginId}/`);
         const loc = res.data.address + ', ' + res.data.city + ', ' + res.data.country;
         setRecruiterId(res.data.id)
@@ -61,13 +63,12 @@ const RecruiterProfile = () => {
         setLocation(loc);
         setLinkedin(res.data.linkedin);
         setGithub(res.data.github);
-        setEmail("moiz.ahmed@gmail.com");
+        setEmail(res.data.email);
         setOrgName(res.data.org_name);
         setWorking(res.data.working_since);
         setOrgDescription(res.data.org_description);
         setOrgWeb(res.data.website);
-        setSkills(['JavaScript', 'Python', 'HTML']);
-
+        saveData(res.data.looking_for);
       } else {
         setError404(true);
       }
@@ -99,7 +100,6 @@ const RecruiterProfile = () => {
                 working={working}
                 orgDescription={orgDescription}
                 orgWeb={orgWeb}
-                skills={skills}
               />
             </Grid>
             <Grid item xs={12} marginTop={2}>

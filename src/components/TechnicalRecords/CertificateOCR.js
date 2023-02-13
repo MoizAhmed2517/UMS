@@ -23,7 +23,7 @@ const style = {
   };
 
 const CertificateOCR = (props) => {
-
+  
   const [isLoading, setIsLoading] = useState(false);
   const [text, setText] = useState("");
   const [image, setImage] = useState('');
