@@ -50,15 +50,13 @@ const ModalExperience = (props) => {
             alert("Please fill the empty field");
         } else {
             event.preventDefault();
-            // if (toDate === ""){
-            //     
-            // }
             const item = {
                 student_id: id,
                 company_name: company,
                 position : position,
                 start_date: fromDate,
                 end_date: toDate,
+                type: type,
             }
             axios.post('http://18.183.141.57/management/experience/', item)
                 .then(response => {
@@ -78,7 +76,6 @@ const ModalExperience = (props) => {
     const handleCheck = (event) => {
         setCheck(event.target.checked);
         if(check){
-            // setToDate("Present");
             setToDate(null);
         }else {
             setToDate(new Date());

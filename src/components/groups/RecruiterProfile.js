@@ -22,7 +22,7 @@ const RecruiterProfile = () => {
   const [location, setLocation] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
-  const [email, setEmail] = useState("moiz.ahmed@gmail.com");
+  const [email, setEmail] = useState("");
   const [orgName, setOrgName] = useState("");
   const [working, setWorking] = useState("");
   const [orgDescription, setOrgDescription] = useState("");

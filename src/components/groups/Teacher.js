@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router';
 import Experience from '../TechnicalRecords/Experience';
 import Publication from '../TechnicalRecords/Publication';
+
 const Teacher = () => {
 
   const locationexist = useLocation();

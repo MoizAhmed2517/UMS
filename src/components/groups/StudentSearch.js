@@ -135,12 +135,6 @@ const StudentSearch = () => {
     fetchData();
   }, [])
 
-  // let viewData = [];
-  // if (type === "recruiter") {
-  //   viewData = filterDataDisplay;
-  // } else {
-  //   viewData = dataDisplay;
-  // }
   const [viewData, setViewData] = useState(dataDisplay)
   const [search, setSearch] = useState(dataDisplay);
   const [changeField, setChangeField] = useState('name');

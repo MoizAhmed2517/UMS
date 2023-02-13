@@ -31,7 +31,7 @@ const events = [
 
 
 
-const Activity = () => {
+const Activity = (props) => {
 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -57,16 +57,21 @@ const Activity = () => {
       }}>
         <Stack direction="row">
           <Typography variant='h6' sx={{ fontWeight: 'bold' }}>Activity</Typography>
-          <Button variant="text" sx={{
-            marginLeft: 'auto',
-            color: '#153E52', 
-            '&:hover': {
-              backgroundColor: '#d9e6f2',
-            }
-            }}
-            onClick={resetHandler}>
-              Reset
-            </Button>
+          {
+            props.displayStatus !== 'search' && (
+              <Button variant="text" sx={{
+                marginLeft: 'auto',
+                color: '#153E52', 
+                '&:hover': {
+                  backgroundColor: '#d9e6f2',
+                }
+                }}
+                onClick={resetHandler}>
+                  Reset
+              </Button>
+            )
+          }
+          
         </Stack>
       </Box>
 
@@ -100,8 +105,15 @@ const Activity = () => {
 
                   <Stack direction="row" spacing={1} marginTop={2}>
                     <Typography variant='title' >Have you attended event?</Typography>
-                    <StyledButton variant='contained' onClick={eventSucessHandler}><DoneOutlinedIcon/></StyledButton>
-                    <StyledButton variant='contained' onClick={eventFailureHandler}><ClearOutlinedIcon/></StyledButton>
+                    {
+                      props.displayStatus !== 'search' && (
+                        <>
+                          <StyledButton variant='contained' onClick={eventSucessHandler}><DoneOutlinedIcon/></StyledButton>
+                          <StyledButton variant='contained' onClick={eventFailureHandler}><ClearOutlinedIcon/></StyledButton>
+                        </>
+                      )
+                    }
+                    
                   </Stack>
                 </StepContent>
               </Step>

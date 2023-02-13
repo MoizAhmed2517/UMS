@@ -54,6 +54,10 @@ const StudentsProfile = () => {
     localStorage.setItem('skills', data);
   }
 
+  function saveData2(data) {
+    localStorage.setItem('name', data);
+  }
+
   useEffect(() => {
     async function fetchData() {
       if (userType === "student"){
@@ -73,6 +77,7 @@ const StudentsProfile = () => {
         setPortfolio(res.data.portfolio);
         setObeKPI(res.data.kpi_values);
         saveData('all');
+        saveData2(res.data.name);
       } else {
         setError404(true);
       }

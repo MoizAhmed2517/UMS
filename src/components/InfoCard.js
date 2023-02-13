@@ -65,9 +65,14 @@ const InfoCard = (props) => {
               '&:hover': { backgroundColor: '#d9e6f2' },
               marginLeft: 'auto',
             }}>
-              <Button variant="text" onClick={handleOpenModal}>
-                <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52' }} />
-              </Button>
+              {
+                props.displayStatus !== 'search' && (
+                  <Button variant="text" onClick={handleOpenModal}>
+                    <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52' }} />
+                  </Button>
+                )
+              }
+              
               <TeacherModel openModal={open} handleClose={handleCloseModal} setOpenState={setOpen} name={props.name} desc={props.desc} talk={props.talks} pNum={props.pNum} loc={props.location} />
             </Avatar>
             
@@ -88,11 +93,6 @@ const InfoCard = (props) => {
                   <Typography variant='p' sx={{ color: 'gray', fontSize: 12 }}>{props.location}</Typography>
                 </Stack>
 
-                {/* <Stack direction='row' spacing={1} marginTop='10px'>
-                  <StyledButton variant="outlined">Research</StyledButton>
-                  <StyledButton variant="outlined">Projects</StyledButton>
-                </Stack> */}
-
               </Box>
             </Grid>
 
@@ -108,7 +108,7 @@ const InfoCard = (props) => {
                     }}>
                       <StoreOutlinedIcon/>
                     </Avatar>
-                    <Typography variant="title" >{props.org}</Typography>
+                    <Typography variant="title" >{props.org.slice(0, 25)}</Typography>
                   </Stack>
 
                   <Stack direction='row' spacing={2}>

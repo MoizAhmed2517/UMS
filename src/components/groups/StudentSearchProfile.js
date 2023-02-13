@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Container, Grid, Stack } from "@mui/material";
 import Notification from "../Notification";
 import InfoCardStudent from '../InfoCardStudent';
@@ -10,7 +10,6 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom'
 import ApplicationSearch from '../ApplicationSearch';
 
-const myValueContext = createContext();
 
 const StudentSearchProfile = () => {
   const locationexist = useLocation()

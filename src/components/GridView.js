@@ -8,7 +8,8 @@ const GridView = (props) => {
 
   const navigate = useNavigate();
 
-  const handleChip = () => {
+  const handleChipStudent = () => {
+    console.log('Student handle')
     if (props.TypeAPI === "student"){
         navigate('/StudentSearchProfile', {
             state: {
@@ -17,6 +18,28 @@ const GridView = (props) => {
         })
     }
   };
+
+  const handleChipTeacher = () => {
+    console.log('Teacher handle')
+    if (props.TypeAPI === "teacher"){
+        navigate('/TeacherSearchProfile', {
+            state: {
+                userId: props.studentId
+            }
+        })
+    }
+  }
+
+  const handleChipRecruiter = () => {
+    console.log('Recruiter handle')
+    if (props.TypeAPI === "recruiter"){
+        navigate('/RecruiterSearchProfile', {
+            state: {
+                userId: props.studentId
+            }
+        })
+    }
+  }
 
   return (
     <Box sx={{
@@ -65,17 +88,17 @@ const GridView = (props) => {
                             props.TypeAPI === 'recruiter' ? (
                                 <>
                                     <Typography variant='subtitle2' sx={{ color: '#153E52', paddingTop: '3px'}}>{`#Hiring: ${props.TeacherInfo.split(',').slice(0,3)}`}</Typography>
-                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
+                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChipRecruiter}/>
                                 </>
                             ) : props.TypeAPI === 'student' ? (
                                 <>
                                     <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px', marginTop: '5px'}}>{`Batch: ${props.TeacherInfo}`}</Typography>
-                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
+                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChipStudent}/>
                                 </>
                             ) : (
                                 <>
                                     <Typography variant='p' sx={{ fontSize: '14px', paddingTop: '1.5px', marginTop: '5px'}}>{props.TeacherInfo}</Typography>
-                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChip}/>
+                                    <Chip label="View" sx={{ marginTop: '3px', borderRadius: '5px', height: '22px', color: '#153E52', fontWeight: 'bold', marginLeft: '4px' }} onClick={handleChipTeacher}/>
                                 </>
                             )
                         }

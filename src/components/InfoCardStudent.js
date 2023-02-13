@@ -22,13 +22,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }))
 
-const experience = [
-  {
-    org: 'Sir Syed University',
-    year: '1998'
-  }
-]
-
 const InfoCardStudent = (props) => {
   const rows = [
     createData(props.studentName, props.studentProfile.slice(0,110), props.studentTalks, props.studentPNum, props.studentLocation, props.studentDept, props.studentSemester, props.studentPortfolio),

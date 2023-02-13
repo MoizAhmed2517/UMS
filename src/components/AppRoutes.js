@@ -17,6 +17,8 @@ import QuizStart from './QuizStart';
 import QuizEnd from './QuizEnd';
 import Login from './groups/Login';
 import StudentSearchProfile from './groups/StudentSearchProfile';
+import RecruiterSearchProfile from './groups/RecruiterSearchProfile';
+import TeacherSearchProfile from './groups/TeacherSearchProfile';
 import AcademicRecordSearch from './AcademicRecordsScreens/AcademicRecordSearch';
 import TechnicalRecordSearch from './TechnicalRecords/TechnicalRecordSearch';
 import Signup from './groups/Signup';
@@ -42,6 +44,8 @@ const AppRoutes = () => {
         <Route path='/QuizStart' element={<><Nav /><QuizStart /></>}/>
         <Route path='/QuizEnd' element={<><Nav /><QuizEnd /></>}/>
         <Route path='/StudentSearchProfile' element={<><Nav /><StudentSearchProfile /></>}/>
+        <Route path='/RecruiterSearchProfile' element={<><Nav /><RecruiterSearchProfile /></>}/>
+        <Route path='/TeacherSearchProfile' element={<><Nav /><TeacherSearchProfile /></>}/>
         <Route path='/Academic-Records-Search' element={<><Nav /><AcademicRecordSearch/></>}/>
         <Route path='/Technical-Records-Search' element={<><Nav /><TechnicalRecordSearch/></>}/> 
       </Routes>

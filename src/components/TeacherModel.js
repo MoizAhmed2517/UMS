@@ -29,7 +29,7 @@ const TeacherModel = (props) => {
   const [errorTalks, setErrorTalks] = useState(0);
   const [error, setError] = useState(0);
   const [textNum, setTextNum] = useState(0);
-  console.log(textNum);
+//   console.log(textNum);
 
   const handleTalks = (e) => {
     let str = e.target.value;

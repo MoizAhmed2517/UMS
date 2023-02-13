@@ -10,36 +10,36 @@ import AddJobModel from './AddJobModel';
 import axios from 'axios';
 
 
-const postedJobs = [
-    {
-        id: 0,
-        JobTitle: 'Trainee Machine  Engineer',
-        Requirements: 'Python | Models | Statistics',
-        CGPA: '3.9',
-        JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
-    },
-    {
-        id: 1,
-        JobTitle: 'Machine Learning Engineer',
-        Requirements: 'Python | Statistics',
-        CGPA: '3.8',
-        JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
-    },
-    {
-        id: 2,
-        JobTitle: 'Trainee Machine Learning Engineer',
-        Requirements: 'R | ML Models | Statistics',
-        CGPA: '3.5',
-        JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
-    },
-    {
-        id: 3,
-        JobTitle: 'Backend Engineer',
-        Requirements: 'Python | Django | Statistics',
-        CGPA: '3.0',
-        JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
-    }
-];
+// const postedJobs = [
+//     {
+//         id: 0,
+//         JobTitle: 'Trainee Machine  Engineer',
+//         Requirements: 'Python | Models | Statistics',
+//         CGPA: '3.9',
+//         JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
+//     },
+//     {
+//         id: 1,
+//         JobTitle: 'Machine Learning Engineer',
+//         Requirements: 'Python | Statistics',
+//         CGPA: '3.8',
+//         JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
+//     },
+//     {
+//         id: 2,
+//         JobTitle: 'Trainee Machine Learning Engineer',
+//         Requirements: 'R | ML Models | Statistics',
+//         CGPA: '3.5',
+//         JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
+//     },
+//     {
+//         id: 3,
+//         JobTitle: 'Backend Engineer',
+//         Requirements: 'Python | Django | Statistics',
+//         CGPA: '3.0',
+//         JobDescription: 'A machine learning engineer (ML engineer) is a professional in the field of information technology who specializes in the development of self-contained artificial intelligence (AI) systems that automate the usage of prediction models.'
+//     }
+// ];
 
 function createData(position, cgpa, skills, JobDescription) {
     return {position, cgpa, skills, JobDescription};

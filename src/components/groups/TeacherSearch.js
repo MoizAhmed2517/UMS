@@ -52,8 +52,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function createData(name, designation, field, descr, typeAPI) {
-  return {name, designation, field, descr, typeAPI};
+function createData(id, name, designation, field, descr, typeAPI) {
+  return {id, name, designation, field, descr, typeAPI};
 }
 
 function limitString(string='', limiter=0){
@@ -106,6 +106,7 @@ const TeacherSearch = () => {
       let designation = [];
       let descr = [];
       let datamap = [];
+      let searchId = [];
       let typeAPI = "teacher";
       res.data.map((data) => {
         let fullName = data.first_name + ' ' +  data.last_name;
@@ -113,10 +114,11 @@ const TeacherSearch = () => {
         field.push(data.Field);
         descr.push(data.profile_description);
         designation.push(data.designation);
+        searchId.push(data.id);
       });
 
       for (let i=0; i<descr.length; i++) {
-        datamap.push(createData(fullNameList[i], designation[i], field[i], descr[i]));
+        datamap.push(createData(searchId[i], fullNameList[i], designation[i], field[i], descr[i], typeAPI));
       }
 
       setDataDisplay(datamap);
@@ -216,14 +218,14 @@ const TeacherSearch = () => {
               search.length === 0 ? 
                 (currentPosts.map((item, index) => (
                   <Grid item xs={4} key={index}>
-                    <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
+                    <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
                   </Grid>
                 ))
                 ) : search.length !== 0 ?
                 (
                   search.map((item, index) => (
                     <Grid item xs={4} key={index}>
-                      <GridView TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
+                      <GridView studentId={item.id} TeacherFName={item.name} TeacherField={item.field} TeacherDesignation={item.designation} TeacherInfo={limitString(item.descr, 140)} TypeAPI={item.typeAPI} />
                     </Grid>
                   ))
                   // setSearch([])
