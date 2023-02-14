@@ -17,16 +17,6 @@ const TechnicalRecords = () => {
   const [certifcate, setCertifcate] = useState(null);
   const [freelance, setFreelance] = useState(null);
   const [link, setLink] = useState("");
-  const [notificationDisplay, setNotificationDisplay] = useState(false);
-
-  useEffect(() => {
-    const notification = localStorage.getItem('notification');
-    if (notification.length !== 0){
-      console.log("Notification Received")
-    } else {
-      console.log("Notificatio N>A");
-    }
-  }, [])
 
   useEffect(() => {
     async function fetchData() {

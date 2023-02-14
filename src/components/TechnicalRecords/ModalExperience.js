@@ -37,7 +37,6 @@ const ModalExperience = (props) => {
     const [type, setType] = useState("");
     const [fromDate, setfromDate] = useState(new Date());
     const [check, setCheck] = useState(true);
-    // const [toDate, setToDate] = useState("Present");
     const [toDate, setToDate] = useState(null);
     const id = localStorage.getItem('id');
 

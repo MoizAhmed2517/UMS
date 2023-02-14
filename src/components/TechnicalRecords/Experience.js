@@ -16,10 +16,9 @@ function createData(position, company, type, fromDate, toDate, location) {
     return { position, company, type, fromDate, toDate, location };
   }
   
-
 const Experience = (props) => {
 
-  const rows = []
+  const rows = [];
 
   props.exp && props.exp.map((item) => {
     rows.push(createData(item.position, item.name, item.type, item.start_date, item.end_date, 'Karachi, Pakistan'))
