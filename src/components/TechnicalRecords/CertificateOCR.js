@@ -77,7 +77,7 @@ const CertificateOCR = (props) => {
           } 
         }
       ).then(({ data: {text} }) => {
-        // console.log(text)
+        console.log(text)
         setStatus(text.includes("Moiz Ahmed"));
 
         if (text.includes("Moiz Ahmed")) {

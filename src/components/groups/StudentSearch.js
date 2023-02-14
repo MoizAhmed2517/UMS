@@ -57,29 +57,10 @@ function createData(id, name, department, sem, batch, typeAPI, kpi, skill, exp, 
   return {id, name, department, sem, batch, typeAPI, kpi, skill, exp, gpa};
 }
 
-function limitString(string='', limiter=0){
-  return string.substring(0, limiter);
-}
-
-const searchFields = [
-  {
-    value: 'name',
-    label: 'Name'
-  },
-  {
-    value: 'sem',
-    label: 'Semester'
-  },
-  {
-    value: 'dept',
-    label: 'Department'
-  }
-];
-
 const StudentSearch = () => {
 
   const skills = ['Javascript', 'Python', 'HTML', 'React', 'SEO', 'Machine Learning', 'OOP', 'Cyber Security', 'AWS', 'Java', "All"];
-  const expereinces = ['All', '0-1 year', '1-2 year', '2-3 year', '3-4 year'];
+  const expereinces = ['All', '0-1 year', '1-2 year', '2-3 year', '3-4 year', '+ 4 year'];
   const batches = ['All', '2020', '2021', '2022', '2023'];
   const semesters = ['All', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
   const cgpas = ['All', '0-0.5', '0.5-1', '1-1.5', '1.5-2', '2-2.5', '2.5-3', '3-3.5', '3.5-4'];
@@ -90,6 +71,7 @@ const StudentSearch = () => {
   const [dataDisplay, setDataDisplay] = useState([]);
   const [filterDataDisplay, setFilterDataDisplay] = useState([]);
   const [copyDataDisplay, setCopyDataDisplay] = useState([]);
+  const [copyDataDisplay2, setCopyDataDisplay2] = useState([]);
   const [skill, setSkill] = useState(primarySkills.split(',')[0].toLocaleLowerCase());
   const [expereince, setExpereince] = useState(expereinces[0].toLocaleLowerCase())
   const [batch, setBatch] = useState(batches[0].toLocaleLowerCase())
@@ -129,6 +111,7 @@ const StudentSearch = () => {
 
       setDataDisplay(datamap);
       setCopyDataDisplay(datamap);
+      setCopyDataDisplay2(datamap);
       const filterData = datamap.filter(student => student.skill.some(skills => primarySkills.includes(skills.name)));
       setFilterDataDisplay(filterData);
     }
@@ -145,6 +128,10 @@ const StudentSearch = () => {
   const currentPosts = dataDisplay.slice(firstPostIndex, lastPostIndex);
   const totalPost = Math.ceil(dataDisplay.length/postPerPage);
 
+  useEffect(() => {
+    setCopyDataDisplay(copyDataDisplay2);
+  }, [dataDisplay]);
+
   const handleCurrentPageDisplay = (e, p) => {
     setCurrentPage(p);
   }
@@ -152,161 +139,166 @@ const StudentSearch = () => {
   const handleExperience = (event) => {
     setExpereince(event.target.value);
     if (event.target.value === '0-1 year'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.exp >=0 && data.exp <=1;
       })
       setDataDisplay(filterData);
     } else if(event.target.value === '1-2 year'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.exp >=1 && data.exp <=2;
       })
       setDataDisplay(filterData);
     } else if(event.target.value === '2-3 year'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.exp >=2 && data.exp <=3;
       })
       setDataDisplay(filterData);
     } else if(event.target.value === '3-4 year'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.exp >=3 && data.exp <=4;
       })
       setDataDisplay(filterData);
+    } else if(event.target.value === '+ 4 year'){
+      const filterData = copyDataDisplay.filter(data => {
+        return data.exp >=4 ;
+      })
+      setDataDisplay(filterData);
     } else {
-      setDataDisplay(copyDataDisplay);
+      setDataDisplay(copyDataDisplay2);
     }
   }
 
   const handleCGPA = (event) => {
     setCGPA(event.target.value);
     if (event.target.value === '0-0.5'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=0 && data.gpa <=0.5;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '0.5-1'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=0.5 && data.gpa <=1;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '1-1.5'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=1 && data.gpa <=1.5;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '1.5-2'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=1.5 && data.gpa <=2;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '2-2.5'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=2 && data.gpa <=2.5;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '2.5-3'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=2.5 && data.gpa <=3;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '3-3.5'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=3 && data.gpa <=3.5;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '3.5-4'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.gpa >=3.5 && data.gpa <=4;
       })
       setDataDisplay(filterData);
     } else {
-      setDataDisplay(copyDataDisplay);
+      setDataDisplay(copyDataDisplay2);
     }
   }
 
   const handleBatch = (event) => {
     setBatch(event.target.value);
     if (event.target.value === '2020'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.batch === 2020;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '2021'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.batch === 2021;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '2022'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.batch === 2022;
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '2023'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.batch === 2023;
       })
       setDataDisplay(filterData);
     } else {
-      setDataDisplay(copyDataDisplay);
+      setDataDisplay(copyDataDisplay2);
     }
   }
 
   const handleSemester = (event) => {
     setSemester(event.target.value);
     if (event.target.value === '1st'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "1";
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '2nd'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "2";
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '3rd'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "3";
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '4th'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "4";
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '5th'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "5";
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '6th'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "6";
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '7th'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "7";
       })
       setDataDisplay(filterData);
     } else if (event.target.value === '8th'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.sem === "8";
       })
       setDataDisplay(filterData);
     } else {
-      setDataDisplay(copyDataDisplay);
+      setDataDisplay(copyDataDisplay2);
     }
   }
 
   const handleDepartment = (event) => {
     setDepartment(event.target.value);
     if (event.target.value === 'software engineering'){
-      const filterData = dataDisplay.filter(data => {
+      const filterData = copyDataDisplay.filter(data => {
         return data.department === 'Software Engineering';
       })
       setDataDisplay(filterData);
     } else if (event.target.value === 'computer science'){
-      const filterData = dataDisplay.filter(data => {
-        return data.batch === 'Computer Science';
+      const filterData = copyDataDisplay.filter(data => {
+        return data.department === 'Computer Science';
       })
       setDataDisplay(filterData);
     } else {
@@ -315,7 +307,7 @@ const StudentSearch = () => {
   }
 
   const handleReset = (event) => {
-    setDataDisplay(copyDataDisplay);
+    setDataDisplay(copyDataDisplay2);
     setExpereince("all");
     setCGPA("all");
     setBatch("all");
@@ -327,67 +319,67 @@ const StudentSearch = () => {
   const handleSkill = (event) => {
     setSkill(event.target.value);
     if (event.target.value === 'javascript'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("JavaScript");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'python'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("Python");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'html'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("HTML");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'react'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("React");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'seo'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("SEO");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'machine learning'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("Machine Learning");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'oop'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("OOP");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'cyber security'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("Cyber Security");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'aws'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("AWS");
       })
       setDataDisplay(filteredData);
     } else if (event.target.value === 'java'){
-      const filteredData = dataDisplay.filter(studentSkill => {
+      const filteredData = copyDataDisplay.filter(studentSkill => {
         const skills = studentSkill.skill.map(item => item.name);
         return skills.includes("Java");
       })
       setDataDisplay(filteredData);
     } else {
-      setDataDisplay(copyDataDisplay);
+      setDataDisplay(copyDataDisplay2);
     }
   }
 

@@ -118,9 +118,14 @@ const InfoCardRecruiter = (props) => {
               '&:hover': { backgroundColor: '#d9e6f2' },
               marginLeft: 'auto',
             }}>
-              <Button variant="text" onClick={() => handleOpenModalEdit(rows)} sx={{ marginTop: 1 }}>
-                <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52', marginTop: -1 }} />
-              </Button>
+              {
+                props.displayStatus !== 'search' && (
+                  <Button variant="text" onClick={() => handleOpenModalEdit(rows)} sx={{ marginTop: 1 }}>
+                    <CreateOutlinedIcon sx={{ height: 25, width: 25, color: '#153E52', marginTop: -1 }} />
+                  </Button>
+                )
+              }
+              
               <ModalRecruiter openModal={openEdit} handleClose={handleCloseModalEdit} setOpenState={setOpenEdit} skill={selectRow} id={props.userId}/>
             </Avatar>
             

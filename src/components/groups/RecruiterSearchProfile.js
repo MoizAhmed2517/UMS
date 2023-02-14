@@ -26,6 +26,7 @@ const RecruiterSearchProfile = () => {
     const [working, setWorking] = useState("");
     const [orgDescription, setOrgDescription] = useState("");
     const [orgWeb, setOrgWeb] = useState("");
+    const [text, setText] = useState("search");
   
     useEffect(() => {
       async function fetchData() {
@@ -71,6 +72,7 @@ const RecruiterSearchProfile = () => {
                   working={working}
                   orgDescription={orgDescription}
                   orgWeb={orgWeb}
+                  displayStatus={text}
                 />
               </Grid>
               <Grid item xs={12} marginTop={2}>

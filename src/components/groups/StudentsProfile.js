@@ -11,6 +11,7 @@ import axios from 'axios';
 import { useLocation } from 'react-router';
 import Error from '../Error';
 
+
 const StudentsProfile = () => {
   const locationexist = useLocation();
   const id = locationexist.state?.userId
@@ -31,6 +32,7 @@ const StudentsProfile = () => {
   const [error404, setError404] = useState(false);
   const [obeKPI, setObeKPI] = useState({});
   const [quiz, setQuiz] = useState([]);
+  const [allData, setAllData] = useState("");
  
   useEffect(() => {
     if (id !== undefined && type !== undefined) {
@@ -62,6 +64,7 @@ const StudentsProfile = () => {
     async function fetchData() {
       if (userType === "student"){
         const res = await axios.get(`http://18.183.141.57/management/student-detail/${userLoginId}/`);
+        setAllData(res.data);
         setName(res.data.name);
         setDept(res.data.department);
         setProfileDescr(res.data.profile_description);
@@ -101,7 +104,7 @@ const StudentsProfile = () => {
               <Grid container spacing={2}>
                 <Grid item xs={8}>
                   <Stack direction="column" spacing={4}>
-                    <InfoCardStudent studentPortfolio={portfolio} userId={userLoginId} studentName={name} studentDept={dept} studentProfile={profileDescr} studentTalks={talks} studentPNum={pNum} studentLocation={location} studentSemester={semester} />
+                    <InfoCardStudent allDataAPI={allData} studentPortfolio={portfolio} userId={userLoginId} studentName={name} studentDept={dept} studentProfile={profileDescr} studentTalks={talks} studentPNum={pNum} studentLocation={location} studentSemester={semester} />
                     <BarChartCGPA studentCGPA={cgpa}/>
                     <Stack direction="row"> 
                       <Grid item xs={6} sx={{ marginBottom: '10px' }}>

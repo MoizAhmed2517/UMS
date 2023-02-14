@@ -7,6 +7,11 @@ import { styled } from '@mui/material';
 import SchoolIcon from '@mui/icons-material/School';
 import { Link } from 'react-router-dom';
 import ModalStudent from './ModalStudent';
+import DownloadIcon from '@mui/icons-material/Download';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 function createData( name, descr, talks, pnum, location, org, year, portfolio ) {
   return { name, descr, talks, pnum, location, org, year, portfolio };
@@ -33,10 +38,73 @@ const InfoCardStudent = (props) => {
     setOpenEdit(true);
     setSelectedRow(row);
   }
+
   const handleCloseModalEdit = () => setOpenEdit(false);
 
   const handlePortfolio = () => {
     window.open(props.studentPortfolio, '_blank');
+  }
+
+  const rowes = [];
+  for (const key in props.allDataAPI.kpi_values) {
+    if (props.allDataAPI.kpi_values.hasOwnProperty(key)) {
+      const row = [
+        { text: key, bold: true },
+        { text: `Affective: ${Math.round(((props.allDataAPI.kpi_values[key]["affective"]) + Number.EPSILON) * 100) / 100}, cognitive: ${Math.round(((props.allDataAPI.kpi_values[key]["cognitive"]) + Number.EPSILON) * 100) / 100}, psychometric: ${Math.round(((props.allDataAPI.kpi_values[key]["psychometric"]) + Number.EPSILON) * 100) / 100}` }
+      ];
+      rowes.push(row);
+    }
+  }
+
+  const handlePdf = () => {
+    const documentDefinition = {
+      content: [
+        { text: props.allDataAPI.name, style: 'header', alignment: 'center' },
+
+        { text: 'Skills: ', style: 'subheader', marginTop: 10 },
+        { text: props.allDataAPI.skills.map((item) => {
+            return item.name + ', '
+        }), marginLeft: 40, marginTop: -16 },
+        
+        { text: 'Experience: ', style: 'subheader', marginTop: 10 },
+        { text: props.allDataAPI.experience.map(item => {
+            return 'Company: ' +  item.name + ', Position: ' + item.position + '\n'
+        }), marginTop: 5 },
+
+        { text: 'Freelancing: ', style: 'subheader', marginTop: 10 },
+        { text: props.allDataAPI.experience.map(item => {
+          return 'Freelancer: ' +  item.name + ', Rating: ' + item.position + '\n'
+      }), marginTop: 5},
+
+      { text: 'OBE KPIs - SKill Wise (Top 3): ', style: 'subheader', marginTop: 10 },
+      {
+        style: "table",
+        table: {
+          headerRows: 1,
+          widths: ["*", "*"],
+          body: [
+            [{ text: "KPI Name", bold: true }, { text: "OBE KPIs", bold: true }],
+            ...rowes
+          ]
+        }
+      }
+      
+      ],
+      styles: {
+        header: {
+          fontSize: 25,
+          bold: true,
+        },
+        subheader: {
+          fontSize: 15,
+          bold: true,
+        },
+        table: {
+          margin: [0, 5, 0, 15]
+        },
+      }
+    };
+    pdfMake.createPdf(documentDefinition).download();
   }
 
   return (
@@ -112,6 +180,7 @@ const InfoCardStudent = (props) => {
 
                 <Stack direction='row' spacing={1} marginTop='10px'>
                   <StyledButton variant="outlined" onClick={handlePortfolio} >Portfolio</StyledButton>
+                  <StyledButton variant="outlined" endIcon={<DownloadIcon />} onClick={handlePdf}>Download Profile</StyledButton>
                 </Stack>
 
               </Box>
